@@ -4,12 +4,19 @@
       <div class="user-info__avatar"><img src="/assets/images/avatar.jpg" alt=""></div>
       <p class="user-info__login">Agranom</p>
     </div>
+    <nav class="main-nav">
+      <a [routerLink]="['/to-do-list']" class="main-nav__link">Home</a>
+    </nav>
   </aside>
-  <div>
-    <header>
-      <div class="container-fluid"></div>
+  <div style="width: 100%;">
+    <header class="header">
+      <div class="container-fluid">
+
+      </div>
     </header>
-    <main></main>
+    <main class="container-fluid">
+      <router-outlet></router-outlet>
+    </main>
     <footer></footer>
   </div>
 </div>
