@@ -1,22 +1,12 @@
-<div class="wrapper">
-  <aside class="side-bar">
-    <div class="user-info flex-menu">
-      <div class="user-info__avatar"><img src="/assets/images/avatar.jpg" alt=""></div>
-      <p class="user-info__login">Agranom</p>
-    </div>
-    <nav class="main-nav">
-      <a [routerLink]="['/to-do-list']" class="main-nav__link">Home</a>
+<md-sidenav-container>
+  <md-sidenav mode="side" opened="true">
+    <nav class="app-navbar">
+      <ul class="side-menu list-group">
+        <li><a [routerLink]="['/to-do-list']">Home</a></li>
+      </ul>
     </nav>
-  </aside>
-  <div style="width: 100%;">
-    <header class="header">
-      <div class="container-fluid">
-
-      </div>
-    </header>
-    <main class="container-fluid">
-      <router-outlet></router-outlet>
-    </main>
-    <footer></footer>
-  </div>
-</div>
+  </md-sidenav>
+  <main class="container-fluid main-content">
+    <router-outlet></router-outlet>
+  </main>
+</md-sidenav-container>

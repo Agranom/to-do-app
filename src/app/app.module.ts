@@ -11,6 +11,9 @@ import {AngularFireAuthModule} from 'angularfire2/auth';
 import {AngularFireDatabaseModule} from 'angularfire2/database';
 import {HttpService} from "./services/http.service";
 import { PriorityPipe } from './to-do-list/priority.pipe';
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {MyOwnAngularMaterialModule} from "./my-own-angular-material/my-own-angular-material.module";
+import 'hammerjs';
 
 export const firebaseConfig = {
   apiKey: 'AIzaSyCJAPAARygnIBL-4DA7k6R8DROQzDKsujg',
@@ -30,13 +33,15 @@ export const firebaseConfig = {
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
     HttpModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireAuthModule,
     AngularFireDatabaseModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MyOwnAngularMaterialModule
   ],
   providers: [HttpService],
   bootstrap: [AppComponent]
