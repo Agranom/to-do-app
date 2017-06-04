@@ -1,6 +1,6 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
 
 import {AppComponent} from './app.component';
@@ -10,6 +10,7 @@ import {AngularFireModule} from 'angularfire2';
 import {AngularFireAuthModule} from 'angularfire2/auth';
 import {AngularFireDatabaseModule} from 'angularfire2/database';
 import {HttpService} from "./services/http.service";
+import { PriorityPipe } from './to-do-list/priority.pipe';
 
 export const firebaseConfig = {
   apiKey: 'AIzaSyCJAPAARygnIBL-4DA7k6R8DROQzDKsujg',
@@ -24,7 +25,8 @@ export const firebaseConfig = {
 @NgModule({
   declarations: [
     AppComponent,
-    ToDoListComponent
+    ToDoListComponent,
+    PriorityPipe
   ],
   imports: [
     BrowserModule,
@@ -33,7 +35,8 @@ export const firebaseConfig = {
     AppRoutingModule,
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireAuthModule,
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    ReactiveFormsModule
   ],
   providers: [HttpService],
   bootstrap: [AppComponent]

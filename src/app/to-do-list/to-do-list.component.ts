@@ -2,8 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {Task} from './task.interface';
 import {Observable} from 'rxjs/Observable';
 import {FirebaseListObservable} from 'angularfire2/database';
-import {AngularFireAuth} from 'angularfire2/auth';
 import {HttpService} from '../services/http.service';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-to-do-list',
@@ -12,25 +12,22 @@ import {HttpService} from '../services/http.service';
 })
 export class ToDoListComponent implements OnInit {
 
-  user: Observable<any>;
   tasks: FirebaseListObservable<any[]>;
 
-  constructor(private afAuth: AngularFireAuth,
-              private http: HttpService) {
+  taskForm: FormGroup;
+
+  constructor(private http: HttpService, private formBuilder: FormBuilder) {
     this.tasks = this.http.getItems('/tasks');
-    this.user = this.afAuth.authState;
+    this.taskForm = this.formBuilder.group({
+      title: ['', Validators.required],
+      priority: '1',
+      date: ['', Validators.required]
+    });
   }
 
   ngOnInit() {
   }
 
-  login(): void {
-    this.afAuth.auth.signInAnonymously();
-  }
-
-  logout(): void {
-    this.afAuth.auth.signOut();
-  }
 
   addTask(task: Task): void {
     this.tasks.push(task);
