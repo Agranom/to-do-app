@@ -1,4 +1,6 @@
 <h1>My To Do List</h1>
+<button class="btn" (click)="login()" *ngIf="!(user | async)?.uid">Login</button>
+<button class="btn" (click)="logout()" *ngIf="(user | async)?.uid">Logout</button>
 <div class="row">
   <div class="col">
     <table class="table">
@@ -13,17 +15,44 @@
       </thead>
 
       <tbody>
-      <tr *ngFor="let task of tasks; let i = index">
+      <tr *ngFor="let task of tasks | async; let i = index">
         <td>{{i + 1}}</td>
         <td>{{task.title}}</td>
         <td>{{task.priority}}</td>
         <td><input type="checkbox" name="isCompleted"></td>
         <td>
           <button class="btn" type="button">Edit</button>
-          <button class="btn">Delete</button>
+          <button class="btn" (click)="delete(task.$key)">Delete</button>
         </td>
       </tr>
       </tbody>
     </table>
   </div>
+</div>
+<div class="row justify-content-center">
+  <form class="col-md-6 col-sm-12">
+    <div class="form-group"><label for="title">Title</label><input name="title" id="title" class="form-control"></div>
+    <fieldset class="form-group">
+      <legend>Priority</legend>
+      <div class="form-check">
+        <label class="form-check-label">
+          <input type="radio" name="priority" class="form-check-input" value="0">
+          High
+        </label>
+      </div>
+      <div class="form-check"><label class="form-check-label"><input type="radio" name="priority"
+                                                                             class="form-check-input" checked value="1">
+      Normal
+      </label>
+      </div>
+      <div class="form-check">
+        <label class="form-check-label"><input type="radio" name="priority"
+                                                                             class="form-check-input" value="2">
+        Low
+        </label>
+      </div>
+    </fieldset>
+    <div class="form-group"><label for="date">Date</label><input type="date" name="date" id="date" class="form-control"></div>
+    <button class="btn" (click)="addTask()">Send</button>
+  </form>
 </div>
