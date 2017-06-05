@@ -23,6 +23,7 @@ export class ToDoListComponent implements OnInit {
     this.tasks = this.http.getItems('/tasks');
     this.taskForm = this.formBuilder.group({
       title: ['', Validators.required],
+      description: ['', Validators.required],
       priority: '1',
       date: ['', Validators.required]
     });
@@ -39,7 +40,8 @@ export class ToDoListComponent implements OnInit {
   }
 
   addTask(task: Task): void {
-    this.tasks.push(task);
+    const newTask = Object.assign(task, {date: task.date.toISOString()})
+    this.tasks.push(newTask);
     this.toggleTaskForm();
   }
 

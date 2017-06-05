@@ -8,6 +8,7 @@
         <th>Title</th>
         <th>Priority</th>
         <th>Complete</th>
+        <th>Date</th>
         <th>Actions</th>
       </tr>
       </thead>
@@ -20,6 +21,7 @@
         <td>
           <md-checkbox name="isCompleted"></md-checkbox>
         </td>
+        <td>{{task.date | date}}</td>
         <td>
           <button class="edit-button" md-mini-fab type="button">
             <md-icon>edit</md-icon>
@@ -38,7 +40,7 @@
   <md-icon *ngIf="isNewTask">remove</md-icon>
 </button>
 <div class="row new-task" *ngIf="isNewTask">
-  <form [formGroup]="taskForm" novalidate class="task-form">
+  <form [formGroup]="taskForm" novalidate class="task-form col-12">
     <div class="row">
       <div class="col-8">
         <div class="form-group">
@@ -50,7 +52,7 @@
       <div class="col-4">
         <div class="form-group">
           <md-input-container class="task-form__field" [color]="'accent'">
-            <input mdInput [mdDatepicker]="datepicker" placeholder="Choose a date" formControlName="date">
+            <input mdInput [mdDatepicker]="datepicker"d placeholder="Choose a date" formControlName="date">
             <button mdSuffix [mdDatepickerToggle]="datepicker"></button>
           </md-input-container>
           <md-datepicker #datepicker></md-datepicker>
@@ -59,7 +61,7 @@
       <div class="col-8">
         <div class="form-group">
           <md-input-container class="task-form__field" [color]="'accent'">
-            <textarea mdInput placeholder="Description"></textarea>
+            <textarea mdInput placeholder="Description" formControlName="description"></textarea>
           </md-input-container>
         </div>
       </div>
