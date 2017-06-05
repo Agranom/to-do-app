@@ -33,22 +33,23 @@
     </table>
   </div>
 </div>
-<button md-fab class="add-button">
-  <md-icon>add</md-icon>
+<button md-fab class="add-button" (click)="toggleTaskForm()">
+  <md-icon *ngIf="!isNewTask">add</md-icon>
+  <md-icon *ngIf="isNewTask">remove</md-icon>
 </button>
-<div class="row new-task">
-  <form [formGroup]="taskForm" novalidate>
+<div class="row new-task" *ngIf="isNewTask">
+  <form [formGroup]="taskForm" novalidate class="task-form">
     <div class="row">
       <div class="col-8">
         <div class="form-group">
-          <md-input-container class="new-task__field" [color]="'accent'">
+          <md-input-container class="task-form__field" [color]="'accent'">
             <input type="text" mdInput placeholder="Task title" formControlName="title">
           </md-input-container>
         </div>
       </div>
       <div class="col-4">
         <div class="form-group">
-          <md-input-container class="new-task__field">
+          <md-input-container class="task-form__field" [color]="'accent'">
             <input mdInput [mdDatepicker]="datepicker" placeholder="Choose a date" formControlName="date">
             <button mdSuffix [mdDatepickerToggle]="datepicker"></button>
           </md-input-container>
@@ -57,7 +58,7 @@
       </div>
       <div class="col-8">
         <div class="form-group">
-          <md-input-container class="new-task__field" [color]="'accent'">
+          <md-input-container class="task-form__field" [color]="'accent'">
             <textarea mdInput placeholder="Description"></textarea>
           </md-input-container>
         </div>

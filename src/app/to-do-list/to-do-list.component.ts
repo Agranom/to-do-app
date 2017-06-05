@@ -15,6 +15,7 @@ export class ToDoListComponent implements OnInit {
 
   priorities = []
   tasks: FirebaseListObservable<any[]>;
+  isNewTask = false;
 
   taskForm: FormGroup;
 
@@ -33,9 +34,13 @@ export class ToDoListComponent implements OnInit {
   ngOnInit() {
   }
 
+  toggleTaskForm(): void {
+    this.isNewTask = !this.isNewTask;
+  }
 
   addTask(task: Task): void {
     this.tasks.push(task);
+    this.toggleTaskForm();
   }
 
   editTask(key: string, task: Task) {
