@@ -52,10 +52,10 @@
       <div class="col-4">
         <div class="form-group">
           <md-input-container class="task-form__field" [color]="'accent'">
-            <input mdInput [mdDatepicker]="datepicker"d placeholder="Choose a date" formControlName="date">
+            <input mdInput [mdDatepicker]="datepicker" [min]="minDate"  formControlName="date">
             <button mdSuffix [mdDatepickerToggle]="datepicker"></button>
           </md-input-container>
-          <md-datepicker #datepicker></md-datepicker>
+          <md-datepicker #datepicker [touchUi]="false" [startAt]="startDate"></md-datepicker>
         </div>
       </div>
       <div class="col-8">
