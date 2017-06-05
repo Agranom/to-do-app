@@ -1,8 +1,15 @@
+<header class="header">
+  <div class="container-fluid">
+    <div class="header__logo">
+      <h1>To Do App</h1>
+    </div>
+  </div>
+</header>
 <md-sidenav-container>
   <md-sidenav mode="side" opened="true">
     <nav class="app-navbar">
       <ul class="side-menu list-group">
-        <li><a [routerLink]="['/to-do-list']">Home</a></li>
+        <li><a [routerLink]="['/to-do-list']" [routerLinkActive]="['active']"><md-icon>home</md-icon>Home</a></li>
       </ul>
     </nav>
   </md-sidenav>
@@ -10,3 +17,4 @@
     <router-outlet></router-outlet>
   </main>
 </md-sidenav-container>
+<footer></footer>

@@ -1,8 +1,23 @@
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css'
+@import "css/variables"
+
+html
+  font-size: 14px
 
 body
-  background-color: #fff
+  background-color: $body-bg
 
 .flex-menu
   display: flex
   align-items: center
+
+button
+  &:focus
+    outline: none
+
+ul
+  list-style: none
+
+a
+  &:hover
+    text-decoration: none

@@ -1,15 +1,33 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {MdSidenavModule} from "@angular/material";
+import {
+  MdButtonModule, MdCheckboxModule, MdDatepickerModule, MdIconModule, MdInputModule,
+  MdNativeDateModule, MdRadioModule,
+  MdSidenavModule
+} from '@angular/material';
 
 @NgModule({
   imports: [
     CommonModule,
-    MdSidenavModule
+    MdSidenavModule,
+    MdCheckboxModule,
+    MdButtonModule,
+    MdIconModule,
+    MdInputModule,
+    MdDatepickerModule,
+    MdNativeDateModule,
+    MdRadioModule
   ],
   exports: [
-    MdSidenavModule
-  ]
+    MdSidenavModule,
+    MdCheckboxModule,
+    MdButtonModule,
+    MdIconModule,
+    MdInputModule,
+    MdDatepickerModule,
+    MdNativeDateModule,
+    MdRadioModule
+  ],
 })
 export class MyOwnAngularMaterialModule {
 }
