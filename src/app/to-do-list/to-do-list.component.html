@@ -1,4 +1,15 @@
-<h2>My To Do List</h2>
+<div class="row">
+  <div class="col">
+    <h2>My To Do List</h2>
+  </div>
+  <div class="col offset-4">
+    <md-input-container class="" [color]="'accent'">
+      <input mdInput [mdDatepicker]="dpFIlter" [(ngModel)]="currentDate">
+      <button mdSuffix [mdDatepickerToggle]="dpFIlter"></button>
+    </md-input-container>
+    <md-datepicker #dpFIlter [touchUi]="false" [startAt]="startDate"></md-datepicker>
+  </div>
+</div>
 <div class="row">
   <div class="col">
     <table class="table task-table">
@@ -14,7 +25,7 @@
       </thead>
 
       <tbody>
-      <tr *ngFor="let task of tasks | async; let i = index">
+      <tr *ngFor="let task of tasks | async | dateFilter: currentDate; let i = index">
         <td>{{i + 1}}</td>
         <td>{{task.title}}</td>
         <td>{{task.priority | priority}}</td>

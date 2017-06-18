@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {Task} from './task.interface';
 import {Priority} from './priority.enum';
-import {FirebaseListObservable} from 'angularfire2/database';
-import {HttpService} from '../services/http.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {ToDoTasksService} from "./to-do-tasks.service";
+import {FirebaseListObservable} from "angularfire2/database";
 
 @Component({
   selector: 'app-to-do-list',
@@ -12,22 +12,27 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 })
 export class ToDoListComponent implements OnInit {
 
+  tasks: FirebaseListObservable<Task[]>;
   priorities = []
-  tasks: FirebaseListObservable<any[]>;
   isNewTask = false;
+  currentDate = new Date();
   minDate = new Date();
   startDate = new Date();
 
   taskForm: FormGroup;
 
-  constructor(private http: HttpService, private formBuilder: FormBuilder) {
-    this.tasks = this.http.getItems('/tasks');
+  constructor(private formBuilder: FormBuilder, private toDoTasksService: ToDoTasksService) {
+    this.tasks = toDoTasksService.getTasks();
     this.taskForm = this.formBuilder.group({
       title: ['', Validators.required],
       description: ['', Validators.required],
       priority: '1',
       date: [new Date(), Validators.required]
     });
+    /**
+     * Get list of priorities to set value for radio buttons
+     * @return {number[]} Array of priorities
+     */
     this.priorities = Object.keys(Priority).filter(priority => {
       return parseInt(priority, 10) >= 0;
     });
@@ -42,16 +47,16 @@ export class ToDoListComponent implements OnInit {
 
   addTask(task: Task): void {
     const newTask = Object.assign(task, {date: task.date.toISOString()})
-    this.tasks.push(newTask);
-    this.toggleTaskForm();
+    this.toDoTasksService.addTask(newTask)
+      .then(() => this.toggleTaskForm());
   }
 
-  editTask(key: string, task: Task) {
-    this.tasks.update(key, task);
+  editTask(key: string, task: Task): void {
+    this.toDoTasksService.updateTask(key, task);
   }
 
   deleteTask(key: string): void {
-    this.tasks.remove(key);
+    this.toDoTasksService.deleteTask(key);
   }
 
 }
