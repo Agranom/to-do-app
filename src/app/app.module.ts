@@ -10,11 +10,13 @@ import {AngularFireModule} from 'angularfire2';
 import {AngularFireAuthModule} from 'angularfire2/auth';
 import {AngularFireDatabaseModule} from 'angularfire2/database';
 import {PriorityPipe} from './to-do-list/priority.pipe';
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {MyOwnAngularMaterialModule} from "./my-own-angular-material/my-own-angular-material.module";
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MyOwnAngularMaterialModule} from './my-own-angular-material/my-own-angular-material.module';
 import 'hammerjs';
 import {DateFilterPipe} from './to-do-list/date-filter.pipe';
-import {ToDoTasksService} from "./to-do-list/to-do-tasks.service";
+import {ToDoTasksService} from './to-do-list/to-do-tasks.service';
+import {Config} from './config';
+import {FormValidatorService} from "./services/form-validator.service";
 
 export const firebaseConfig = {
   apiKey: 'AIzaSyCJAPAARygnIBL-4DA7k6R8DROQzDKsujg',
@@ -45,7 +47,7 @@ export const firebaseConfig = {
     ReactiveFormsModule,
     MyOwnAngularMaterialModule
   ],
-  providers: [ToDoTasksService],
+  providers: [ToDoTasksService, Config, FormValidatorService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
