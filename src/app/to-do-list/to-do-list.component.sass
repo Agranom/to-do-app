@@ -2,11 +2,16 @@
 
 .task-table
   margin-top: 2rem
-  thead
+  &__header
     background-color: lighten($main-color, 40%)
-  tbody
+  &__body
     td
       vertical-align: middle
+  &__item
+    &.completed
+      color: $completed-text
+      td:not(.task-table__actions)
+        text-decoration: line-through
 
 .edit-button
   margin-right: 1rem
@@ -16,6 +21,7 @@
 
 .new-task
   margin-top: 2rem
+
 .task-form
   &__field
     width: 100%

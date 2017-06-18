@@ -46,13 +46,20 @@ export class ToDoListComponent implements OnInit {
   }
 
   addTask(task: Task): void {
-    const newTask = Object.assign(task, {date: task.date.toISOString()})
+    const newTask = Object.assign(task, {
+      date: task.date.toISOString(),
+      isCompleted: false
+    });
     this.toDoTasksService.addTask(newTask)
       .then(() => this.toggleTaskForm());
   }
 
   editTask(key: string, task: Task): void {
     this.toDoTasksService.updateTask(key, task);
+  }
+
+  completeTask(key: string, status: boolean) {
+    this.toDoTasksService.completeTask(key, status);
   }
 
   deleteTask(key: string): void {

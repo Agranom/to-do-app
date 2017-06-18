@@ -24,6 +24,10 @@ export class ToDoTasksService {
     this.tasks.update(key, task);
   }
 
+  completeTask(key: string, status: boolean) {
+    this.tasks.update(key, {isCompleted: status});
+  }
+
   deleteTask(key: string) {
     this.tasks.remove(key);
   }

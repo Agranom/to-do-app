@@ -13,28 +13,30 @@
 <div class="row">
   <div class="col">
     <table class="table task-table">
-      <thead>
+      <thead class="task-table__header">
       <tr>
         <th>#</th>
         <th>Title</th>
         <th>Priority</th>
-        <th>Complete</th>
+        <th>Completed</th>
         <th>Date</th>
         <th>Actions</th>
       </tr>
       </thead>
 
-      <tbody>
-      <tr *ngFor="let task of tasks | async | dateFilter: currentDate; let i = index">
+      <tbody class="task-table__body">
+      <tr class="task-table__item" *ngFor="let task of tasks | async | dateFilter: currentDate; let i = index"
+          [ngClass]="{'completed': task.isCompleted}">
         <td>{{i + 1}}</td>
         <td>{{task.title}}</td>
         <td>{{task.priority | priority}}</td>
         <td>
-          <md-checkbox name="isCompleted"></md-checkbox>
+          <md-checkbox [checked]="task.isCompleted" #isCompleted
+                       (change)="completeTask(task.$key, isCompleted.checked)"></md-checkbox>
         </td>
         <td>{{task.date | date}}</td>
-        <td>
-          <button class="edit-button" md-mini-fab type="button">
+        <td class="task-table__actions">
+          <button [disabled]="task.isCompleted" class="edit-button" md-mini-fab type="button">
             <md-icon>edit</md-icon>
           </button>
           <button class="" md-mini-fab (click)="deleteTask(task.$key)" [color]="'warn'">
@@ -63,7 +65,7 @@
       <div class="col-4">
         <div class="form-group">
           <md-input-container class="task-form__field" [color]="'accent'">
-            <input mdInput [mdDatepicker]="datepicker" [min]="minDate"  formControlName="date">
+            <input mdInput [mdDatepicker]="datepicker" [min]="minDate" formControlName="date" tabindex="-1">
             <button mdSuffix [mdDatepickerToggle]="datepicker"></button>
           </md-input-container>
           <md-datepicker #datepicker [touchUi]="false" [startAt]="startDate"></md-datepicker>
