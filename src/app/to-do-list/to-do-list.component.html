@@ -10,7 +10,7 @@
     <md-datepicker #dpFIlter [touchUi]="false" [startAt]="startDate"></md-datepicker>
   </div>
 </div>
-<div class="row">
+<div class="row task-board">
   <div class="col">
     <table class="table task-table">
       <thead class="task-table__header">
@@ -23,8 +23,7 @@
         <th>Actions</th>
       </tr>
       </thead>
-
-      <tbody class="task-table__body">
+      <tbody class="task-table__body" *ngIf="!isProcessing">
       <tr class="task-table__item" *ngFor="let task of tasks | async | dateFilter: currentDate; let i = index"
           [ngClass]="{'completed': task.isCompleted}">
         <td>{{i + 1}}</td>
@@ -47,6 +46,7 @@
       </tbody>
     </table>
   </div>
+  <md-progress-spinner class="task-loader" *ngIf="isProcessing" [mode]="'indeterminate'" [strokeWidth]="'5'"></md-progress-spinner>
 </div>
 <button md-fab class="add-button" (click)="toggleTaskForm()">
   <md-icon *ngIf="!isNewTask">add</md-icon>

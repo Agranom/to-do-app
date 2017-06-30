@@ -17,10 +17,10 @@ export class ToDoListComponent implements OnInit {
   priorities = [];
   isNewTask = false;
   currentDate = new Date();
-  /*TODO: fix bug with locale*/
   minDate = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate() - 1);
   startDate = new Date();
   submitted = false;
+  isProcessing = false;
 
   taskForm: FormGroup;
 
@@ -30,9 +30,16 @@ export class ToDoListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.tasks = this.toDoTasksService.getTasks();
+    this.getTasks();
     this.buildForm();
-    console.log(this.minDate);
+  }
+
+  getTasks(): void {
+    this.isProcessing = true;
+    this.toDoTasksService.getTasks().subscribe((tasks) => {
+      this.tasks = tasks;
+      setTimeout(() => this.isProcessing = false, 2000);
+    });
   }
 
   buildForm(): void {

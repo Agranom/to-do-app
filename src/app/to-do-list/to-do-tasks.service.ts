@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {AngularFireDatabase, FirebaseListObservable} from 'angularfire2/database';
 import {Task} from './task.interface';
 import {Config} from '../config';
+import {Observable} from "rxjs/Observable";
 
 @Injectable()
 export class ToDoTasksService {
@@ -12,9 +13,9 @@ export class ToDoTasksService {
   constructor(private afDatabase: AngularFireDatabase, private config: Config) {
   }
 
-  getTasks() {
+  getTasks(): Observable<any> {
     this.tasks = this.afDatabase.list(this.config.TASKS);
-    return this.tasks;
+    return Observable.of(this.tasks);
   }
 
   addTask(task: Task) {

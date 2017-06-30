@@ -2,7 +2,7 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {
   MdButtonModule, MdCheckboxModule, MdDatepickerModule, MdIconModule, MdInputModule,
-  MdNativeDateModule, MdRadioModule,
+  MdNativeDateModule, MdProgressSpinnerModule, MdRadioModule,
   MdSidenavModule
 } from '@angular/material';
 
@@ -16,7 +16,8 @@ import {
     MdInputModule,
     MdDatepickerModule,
     MdNativeDateModule,
-    MdRadioModule
+    MdRadioModule,
+    MdProgressSpinnerModule
   ],
   exports: [
     MdSidenavModule,
@@ -26,7 +27,8 @@ import {
     MdInputModule,
     MdDatepickerModule,
     MdNativeDateModule,
-    MdRadioModule
+    MdRadioModule,
+    MdProgressSpinnerModule
   ],
 })
 export class MyOwnAngularMaterialModule {
