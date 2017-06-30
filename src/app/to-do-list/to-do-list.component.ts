@@ -18,7 +18,7 @@ export class ToDoListComponent implements OnInit {
   isNewTask = false;
   currentDate = new Date();
   /*TODO: fix bug with locale*/
-  minDate = new Date();
+  minDate = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate() - 1);
   startDate = new Date();
   submitted = false;
 
@@ -32,6 +32,7 @@ export class ToDoListComponent implements OnInit {
   ngOnInit() {
     this.tasks = this.toDoTasksService.getTasks();
     this.buildForm();
+    console.log(this.minDate);
   }
 
   buildForm(): void {
