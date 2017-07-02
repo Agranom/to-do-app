@@ -1,7 +1,8 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChange, SimpleChanges} from '@angular/core';
 import {AbstractControl, FormBuilder, Validators, FormGroup} from '@angular/forms';
 import {FormValidatorService} from '../../services/form-validator.service';
 import {Priority} from '../priority.enum';
+import {Task} from '../task.interface';
 
 
 @Component({
@@ -9,7 +10,7 @@ import {Priority} from '../priority.enum';
   templateUrl: './task-form.component.html',
   styleUrls: ['./task-form.component.sass']
 })
-export class TaskFormComponent implements OnInit {
+export class TaskFormComponent implements OnInit, OnChanges {
 
   minDate = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate() - 1);
   startDate = new Date();
@@ -17,14 +18,24 @@ export class TaskFormComponent implements OnInit {
   taskForm: FormGroup;
   priorities = [];
   @Input() buttonText: string;
+  @Input() task: Task;
   @Output() onSubmitted = new EventEmitter();
   private currentDate = new Date();
 
   constructor(private formBuilder: FormBuilder, private formValidatorService: FormValidatorService) {
+    this.buildForm();
   }
 
   ngOnInit() {
-    this.buildForm();
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['task']) {
+      this.taskForm.patchValue({title: changes['task'].currentValue.title});
+      this.taskForm.patchValue({description: changes['task'].currentValue.description});
+      this.taskForm.patchValue({priority: changes['task'].currentValue.priority});
+      this.taskForm.patchValue({date: new Date(changes['task'].currentValue.date)});
+    }
   }
 
   buildForm(): void {
@@ -47,7 +58,6 @@ export class TaskFormComponent implements OnInit {
   onSubmit(): void {
     this.isSubmitted = true;
     this.taskForm.markAsDirty();
-    console.log(this.taskForm.get('date').valid);
     if (this.taskForm.valid) {
       this.onSubmitted.emit(this.taskForm.value);
     }

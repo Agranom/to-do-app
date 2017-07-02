@@ -14,6 +14,7 @@ export class ToDoListComponent implements OnInit {
   tasks: FirebaseListObservable<Task[]>;
   isNewTask = false;
   currentDate = new Date();
+  startDate = new Date();
   isProcessing = false;
 
 
@@ -45,10 +46,6 @@ export class ToDoListComponent implements OnInit {
     });
     this.toDoTasksService.addTask(newTask)
       .then(() => this.toggleTaskForm());
-  }
-
-  editTask(key: string, task: Task): void {
-    this.toDoTasksService.updateTask(key, task);
   }
 
   completeTask(key: string, status: boolean) {

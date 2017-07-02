@@ -10,7 +10,7 @@ import {TaskDetailsComponent} from './to-do-list/task-details/task-details.compo
 const routes: Routes = [
   {path: '', redirectTo: '/to-do-list', pathMatch: 'full'},
   {path: 'to-do-list', component: ToDoListComponent},
-  {path: 'task-details', component: TaskDetailsComponent}
+  {path: 'task-details/:id', component: TaskDetailsComponent}
 ];
 
 @NgModule({
