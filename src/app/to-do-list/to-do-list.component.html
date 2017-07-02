@@ -27,7 +27,7 @@
       <tr class="task-table__item" *ngFor="let task of tasks | async | dateFilter: currentDate; let i = index"
           [ngClass]="{'completed': task.isCompleted}">
         <td>{{i + 1}}</td>
-        <td>{{task.title}}</td>
+        <td mdTooltip="{{task.description}}">{{task.title}}</td>
         <td>{{task.priority | priority}}</td>
         <td>
           <md-checkbox [checked]="task.isCompleted" #isCompleted
