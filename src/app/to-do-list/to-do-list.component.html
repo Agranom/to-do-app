@@ -1,13 +1,24 @@
-<div class="row">
-  <div class="col">
+<div class="row justify-content-between">
+  <div class="col-8">
     <h2>My To Do List</h2>
   </div>
-  <div class="col offset-4">
-    <md-input-container class="" [color]="'accent'">
-      <input mdInput [mdDatepicker]="dpFIlter" [(ngModel)]="currentDate">
-      <button mdSuffix [mdDatepickerToggle]="dpFIlter"></button>
-    </md-input-container>
-    <md-datepicker #dpFIlter [touchUi]="false" [startAt]="startDate"></md-datepicker>
+  <div class="col">
+    <div class="row">
+      <div class="col">
+        <md-input-container class="" [color]="'accent'">
+          <input mdInput [mdDatepicker]="dpStartDate" placeholder="from" [(ngModel)]="startDate">
+          <button mdSuffix [mdDatepickerToggle]="dpStartDate"></button>
+        </md-input-container>
+        <md-datepicker #dpStartDate [touchUi]="false" [startAt]="startDate"></md-datepicker>
+      </div>
+      <div class="col">
+        <md-input-container class="" [color]="'accent'">
+          <input mdInput [mdDatepicker]="dpEndDate" placeholder="to" [(ngModel)]="endDate">
+          <button mdSuffix [mdDatepickerToggle]="dpEndDate"></button>
+        </md-input-container>
+        <md-datepicker #dpEndDate [touchUi]="false" [startAt]="endDate"></md-datepicker>
+      </div>
+    </div>
   </div>
 </div>
 <div class="row task-board">
@@ -47,7 +58,8 @@
       </tbody>
     </table>
   </div>
-  <md-progress-spinner class="task-loader" *ngIf="isProcessing" [mode]="'indeterminate'" [strokeWidth]="'5'"></md-progress-spinner>
+  <md-progress-spinner class="task-loader" *ngIf="isProcessing" [mode]="'indeterminate'"
+                       [strokeWidth]="'5'"></md-progress-spinner>
 </div>
 <button md-fab class="add-button" (click)="toggleTaskForm()">
   <md-icon *ngIf="!isNewTask">add</md-icon>

@@ -13,8 +13,8 @@ export class ToDoListComponent implements OnInit {
 
   tasks: FirebaseListObservable<Task[]>;
   isNewTask = false;
-  currentDate = new Date();
-  startDate = new Date();
+  startDate: Date;
+  endDate: Date;
   isProcessing = false;
 
 
