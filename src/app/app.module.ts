@@ -17,6 +17,8 @@ import {DateFilterPipe} from './to-do-list/date-filter.pipe';
 import {ToDoTasksService} from './to-do-list/to-do-tasks.service';
 import {Config} from './config';
 import {FormValidatorService} from "./services/form-validator.service";
+import { TaskDetailsComponent } from './to-do-list/task-details/task-details.component';
+import { TaskFormComponent } from './to-do-list/task-form/task-form.component';
 
 export const firebaseConfig = {
   apiKey: 'AIzaSyCJAPAARygnIBL-4DA7k6R8DROQzDKsujg',
@@ -33,7 +35,9 @@ export const firebaseConfig = {
     AppComponent,
     ToDoListComponent,
     PriorityPipe,
-    DateFilterPipe
+    DateFilterPipe,
+    TaskDetailsComponent,
+    TaskFormComponent
   ],
   imports: [
     BrowserModule,

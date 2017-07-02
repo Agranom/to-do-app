@@ -1,10 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Task} from './task.interface';
-import {Priority} from './priority.enum';
-import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ToDoTasksService} from './to-do-tasks.service';
 import {FirebaseListObservable} from 'angularfire2/database';
-import {FormValidatorService} from "../services/form-validator.service";
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-to-do-list',
@@ -14,24 +12,18 @@ import {FormValidatorService} from "../services/form-validator.service";
 export class ToDoListComponent implements OnInit {
 
   tasks: FirebaseListObservable<Task[]>;
-  priorities = [];
   isNewTask = false;
   currentDate = new Date();
-  minDate = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate() - 1);
-  startDate = new Date();
-  submitted = false;
   isProcessing = false;
 
-  taskForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private toDoTasksService: ToDoTasksService,
-              private formValidatorService: FormValidatorService) {
+  constructor(private toDoTasksService: ToDoTasksService,
+              private router: Router) {
 
   }
 
   ngOnInit() {
     this.getTasks();
-    this.buildForm();
   }
 
   getTasks(): void {
@@ -39,23 +31,6 @@ export class ToDoListComponent implements OnInit {
     this.toDoTasksService.getTasks().subscribe((tasks) => {
       this.tasks = tasks;
       setTimeout(() => this.isProcessing = false, 2000);
-    });
-  }
-
-  buildForm(): void {
-    this.taskForm = this.formBuilder.group({
-      title: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(55)]],
-      description: ['', Validators.maxLength(255)],
-      priority: '1',
-      date: [this.currentDate, Validators.required]
-    });
-
-    /**
-     * Get list of priorities to set value for radio buttons
-     * @return {number[]} Array of priorities
-     */
-    this.priorities = Object.keys(Priority).filter(priority => {
-      return parseInt(priority, 10) >= 0;
     });
   }
 
@@ -84,17 +59,9 @@ export class ToDoListComponent implements OnInit {
     this.toDoTasksService.deleteTask(key);
   }
 
-  onSubmit(): void {
-    this.submitted = true;
-    this.taskForm.markAsDirty();
-    console.log(this.taskForm.get('date').valid);
-    if (this.taskForm.valid) {
-      this.addTask(this.taskForm.value);
-    }
-  }
 
-  getValidatorMessage(control: AbstractControl, name: string) {
-    return this.formValidatorService.getValidatorMessage(control, name);
+  onSelect(task): void {
+    this.router.navigate(['/task-details', task.$key]);
   }
 
 }

@@ -1,0 +1,49 @@
+<div class="row">
+  <form [formGroup]="taskForm" novalidate class="task-form col-12" (submit)="onSubmit()">
+    <div class="row">
+      <div class="col-8">
+        <div class="form-group">
+          <md-input-container class="task-form__field" [color]="'accent'">
+            <input type="text" mdInput placeholder="Task title" formControlName="title">
+          </md-input-container>
+          <div [hidden]="taskForm.get('title').errors && !isSubmitted">
+            <span class="text-danger">{{getValidatorMessage(taskForm.get('title'), 'Title')}}</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="form-group">
+          <md-input-container class="task-form__field" [color]="'accent'">
+            <input mdInput [mdDatepicker]="datepicker" [min]="minDate" formControlName="date">
+            <button mdSuffix [mdDatepickerToggle]="datepicker"></button>
+          </md-input-container>
+          <md-datepicker #datepicker [touchUi]="false" [startAt]="startDate"></md-datepicker>
+          <div [hidden]="taskForm.get('date').errors && !isSubmitted">
+            <span class="text-danger">{{getValidatorMessage(taskForm.get('date'), 'Date')}}</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-8">
+        <div class="form-group">
+          <md-input-container class="task-form__field" [color]="'accent'">
+            <textarea mdInput placeholder="Description" formControlName="description"></textarea>
+            <div [hidden]="taskForm.get('description').errors && !isSubmitted">
+              <span class="text-danger">{{getValidatorMessage(taskForm.get('description'), 'Description')}}</span>
+            </div>
+          </md-input-container>
+        </div>
+      </div>
+      <div class="col-4">
+        <fieldset class="form-group">
+          <legend>Priority</legend>
+          <div class="form-check form-check-inline" *ngFor="let priority of priorities">
+            <md-radio-group formControlName="priority" [name]="'priority'">
+              <md-radio-button [value]="priority">{{priority | priority | lowercase}}</md-radio-button>
+            </md-radio-group>
+          </div>
+        </fieldset>
+      </div>
+    </div>
+    <button md-raised-button type="submit">{{buttonText || 'Continue'}}</button>
+  </form>
+</div>
