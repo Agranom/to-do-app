@@ -6,12 +6,34 @@ import {FirebaseListObservable} from 'angularfire2/database';
 })
 export class DateFilterPipe implements PipeTransform {
 
-  transform(items: any[], date: Date): any {
-    if (!items || !date) {
+  private generateDate(year, month, day): Date {
+    return new Date(year, month, day);
+  }
+
+  transform(items: any[], startDate: Date, endDate: Date): any {
+    let itemDate: Date;
+
+    if (!items || (!startDate && !endDate)) {
       return items;
     }
+    if ((items && startDate) && !endDate) {
+      return items.filter(item => {
+          itemDate = new Date(item.date);
+          return this.generateDate(itemDate.getFullYear(), itemDate.getMonth(), itemDate.getDate()) >= startDate;
+        });
+    }
+    if ((items && endDate) && !startDate) {
+      return items.filter(item => {
+        itemDate = new Date(item.date);
+        return this.generateDate(itemDate.getFullYear(), itemDate.getMonth(), itemDate.getDate()) <= endDate;
+      });
+    }
 
-    return items.filter(item => new Date(item.date).getDate() === date.getDate());
+    return items.filter(item => {
+      itemDate = new Date(item.date);
+      return this.generateDate(itemDate.getFullYear(), itemDate.getMonth(), itemDate.getDate()) >= startDate
+        && this.generateDate(itemDate.getFullYear(), itemDate.getMonth(), itemDate.getDate()) <= endDate;
+    });
   }
 
 }

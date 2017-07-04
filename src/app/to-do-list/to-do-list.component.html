@@ -35,7 +35,7 @@
       </tr>
       </thead>
       <tbody class="task-table__body" *ngIf="!isProcessing">
-      <tr class="task-table__item" *ngFor="let task of tasks | async | dateFilter: currentDate; let i = index"
+      <tr class="task-table__item" *ngFor="let task of tasks | async | dateFilter: startDate: endDate; let i = index"
           [ngClass]="{'completed': task.isCompleted}">
         <td>{{i + 1}}</td>
         <td mdTooltip="{{task.description}}">{{task.title}}</td>
