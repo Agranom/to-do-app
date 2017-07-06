@@ -3,6 +3,7 @@ import {AbstractControl, FormBuilder, Validators, FormGroup} from '@angular/form
 import {FormValidatorService} from '../../services/form-validator.service';
 import {Priority} from '../priority.enum';
 import {Task} from '../task.interface';
+import {expiredDateValidator} from '../../form-validators/form-validators';
 
 
 @Component({
@@ -12,7 +13,6 @@ import {Task} from '../task.interface';
 })
 export class TaskFormComponent implements OnInit, OnChanges {
 
-  minDate = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate() - 1);
   startDate = new Date();
   isSubmitted = false;
   taskForm: FormGroup;
@@ -29,21 +29,12 @@ export class TaskFormComponent implements OnInit, OnChanges {
   ngOnInit() {
   }
 
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes['task']) {
-      this.taskForm.patchValue({title: changes['task'].currentValue.title});
-      this.taskForm.patchValue({description: changes['task'].currentValue.description});
-      this.taskForm.patchValue({priority: changes['task'].currentValue.priority});
-      this.taskForm.patchValue({date: new Date(changes['task'].currentValue.date)});
-    }
-  }
-
   buildForm(): void {
     this.taskForm = this.formBuilder.group({
       title: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(55)]],
       description: ['', Validators.maxLength(255)],
       priority: '1',
-      date: [this.currentDate, Validators.required]
+      date: [this.currentDate, [Validators.required, expiredDateValidator()]]
     });
 
     /**
@@ -53,6 +44,15 @@ export class TaskFormComponent implements OnInit, OnChanges {
     this.priorities = Object.keys(Priority).filter(priority => {
       return parseInt(priority, 10) >= 0;
     });
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['task']) {
+      this.taskForm.patchValue({title: changes['task'].currentValue.title});
+      this.taskForm.patchValue({description: changes['task'].currentValue.description});
+      this.taskForm.patchValue({priority: changes['task'].currentValue.priority});
+      this.taskForm.patchValue({date: new Date(changes['task'].currentValue.date)});
+    }
   }
 
   onSubmit(): void {

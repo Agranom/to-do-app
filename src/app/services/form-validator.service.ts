@@ -25,6 +25,9 @@ export class FormValidatorService {
       const requiredLength = control.errors.maxlength.requiredLength;
       return this.getMaxLength(name, requiredLength);
     }
+    if (control.hasError('expiredDate')) {
+      return this.getexpiredDate();
+    }
   }
 
   /**
@@ -45,6 +48,7 @@ export class FormValidatorService {
   private getMinLength(name: string, length: number): string {
     return `${name} must be at least ${length} characters`;
   }
+
   /**
    * Get error message for maxLength validator
    * @param name - Name of form control
@@ -53,6 +57,14 @@ export class FormValidatorService {
    */
   private getMaxLength(name: string, length: number): string {
     return `${name} must be less than ${length} characters`;
+  }
+
+  /**
+   * Get error message for expiredDate validator
+   * @return {string} - Error message
+   */
+  private getexpiredDate() {
+    return 'Incorrect date';
   }
 
 }
