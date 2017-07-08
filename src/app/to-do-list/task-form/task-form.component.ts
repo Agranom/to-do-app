@@ -2,7 +2,7 @@ import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChange,
 import {AbstractControl, FormBuilder, Validators, FormGroup} from '@angular/forms';
 import {FormValidatorService} from '../../services/form-validator.service';
 import {Priority} from '../priority.enum';
-import {Task} from '../task.interface';
+import {Task} from '../models/task.interface';
 import {expiredDateValidator} from '../../form-validators/form-validators';
 
 

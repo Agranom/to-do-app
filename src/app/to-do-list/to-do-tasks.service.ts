@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {AngularFireDatabase, FirebaseListObservable} from 'angularfire2/database';
-import {Task} from './task.interface';
+import {Task} from './models/task.interface';
 import {Config} from '../config';
 import {Observable} from 'rxjs/Observable';
 

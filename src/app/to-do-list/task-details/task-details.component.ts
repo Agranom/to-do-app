@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {ToDoTasksService} from '../to-do-tasks.service';
-import {Task} from '../task.interface';
+import {Task} from '../models/task.interface';
 
 @Component({
   selector: 'app-task-details',
