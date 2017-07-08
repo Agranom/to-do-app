@@ -3,22 +3,6 @@
     <h1>My To Do List</h1>
   </div>
   <div class="col">
-    <div class="row">
-      <div class="col">
-        <md-input-container class="" [color]="'accent'">
-          <input mdInput [mdDatepicker]="dpStartDate" placeholder="from" [(ngModel)]="startDate">
-          <button mdSuffix [mdDatepickerToggle]="dpStartDate"></button>
-        </md-input-container>
-        <md-datepicker #dpStartDate [touchUi]="false" [startAt]="startDate"></md-datepicker>
-      </div>
-      <div class="col">
-        <md-input-container class="" [color]="'accent'">
-          <input mdInput [mdDatepicker]="dpEndDate" placeholder="to" [(ngModel)]="endDate">
-          <button mdSuffix [mdDatepickerToggle]="dpEndDate"></button>
-        </md-input-container>
-        <md-datepicker #dpEndDate [touchUi]="false" [startAt]="endDate"></md-datepicker>
-      </div>
-    </div>
   </div>
 </div>
 <div class="row task-board">
@@ -31,7 +15,23 @@
         <app-task-list-table [filterProp]="'overdue'"></app-task-list-table>
       </md-tab>
       <md-tab label="All tasks">
-        <app-task-list-table></app-task-list-table>
+        <div class="filter justify-content-end">
+          <div class="col-2">
+            <md-input-container class="" [color]="'accent'">
+              <input mdInput [mdDatepicker]="dpStartDate" placeholder="from" [(ngModel)]="startDate">
+              <button mdSuffix [mdDatepickerToggle]="dpStartDate"></button>
+            </md-input-container>
+            <md-datepicker #dpStartDate [touchUi]="false" [startAt]="startDate"></md-datepicker>
+          </div>
+          <div class="col-2">
+            <md-input-container class="" [color]="'accent'">
+              <input mdInput [mdDatepicker]="dpEndDate" placeholder="to" [(ngModel)]="endDate">
+              <button mdSuffix [mdDatepickerToggle]="dpEndDate"></button>
+            </md-input-container>
+            <md-datepicker #dpEndDate [touchUi]="true" [startAt]="endDate"></md-datepicker>
+          </div>
+        </div>
+        <app-task-list-table [startDate]="startDate" [endDate]="endDate"></app-task-list-table>
       </md-tab>
     </md-tab-group>
   </div>

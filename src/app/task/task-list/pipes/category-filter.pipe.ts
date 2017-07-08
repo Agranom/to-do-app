@@ -20,7 +20,7 @@ export class CategoryFilterPipe implements PipeTransform {
     }
     if (category === 'today') {
       return items.filter(item => {
-        return new Date(item.date).getDate() === new Date().getDate();
+        return getDateWithoutTime(new Date(item.date)) === getDateWithoutTime(new Date());
       });
     }
   }

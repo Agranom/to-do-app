@@ -12,8 +12,8 @@ import {Task} from '../../models/task.interface';
 export class TaskListTableComponent implements OnInit {
 
   tasks: FirebaseListObservable<Task[]>;
-  startDate: Date;
-  endDate: Date;
+  @Input() startDate: Date;
+  @Input() endDate: Date;
   /**
    * Property for filter by category
    * @Input
@@ -45,6 +45,10 @@ export class TaskListTableComponent implements OnInit {
 
   onSelect(task): void {
     this.router.navigate(['/task-details', task.$key]);
+  }
+
+  isTaskOverdue(taskDate: string): boolean {
+    return new Date(taskDate) < new Date();
   }
 
 }
