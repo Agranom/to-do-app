@@ -23,8 +23,16 @@
 </div>
 <div class="row task-board">
   <div class="col">
-    <app-task-list-table></app-task-list-table>
+    <md-tab-group>
+      <md-tab label="Today tasks">
+        <app-task-list-table [filterProp]="'today'"></app-task-list-table>
+      </md-tab>
+      <md-tab label="Overdue tasks">
+        <app-task-list-table [filterProp]="'overdue'"></app-task-list-table>
+      </md-tab>
+      <md-tab label="All tasks">
+        <app-task-list-table></app-task-list-table>
+      </md-tab>
+    </md-tab-group>
   </div>
-  <md-progress-spinner class="task-loader" *ngIf="isProcessing" [mode]="'indeterminate'"
-                       [strokeWidth]="'5'"></md-progress-spinner>
 </div>

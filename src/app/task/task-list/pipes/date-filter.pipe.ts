@@ -5,7 +5,7 @@ import {FirebaseListObservable} from 'angularfire2/database';
   name: 'dateFilter'
 })
 export class DateFilterPipe implements PipeTransform {
-
+/*TODO: replace this fn*/
   private generateDate(year, month, day): Date {
     return new Date(year, month, day);
   }
@@ -18,9 +18,9 @@ export class DateFilterPipe implements PipeTransform {
     }
     if ((items && startDate) && !endDate) {
       return items.filter(item => {
-          itemDate = new Date(item.date);
-          return this.generateDate(itemDate.getFullYear(), itemDate.getMonth(), itemDate.getDate()) >= startDate;
-        });
+        itemDate = new Date(item.date);
+        return this.generateDate(itemDate.getFullYear(), itemDate.getMonth(), itemDate.getDate()) >= startDate;
+      });
     }
     if ((items && endDate) && !startDate) {
       return items.filter(item => {

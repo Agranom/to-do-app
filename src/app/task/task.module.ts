@@ -11,6 +11,7 @@ import {PriorityPipe} from './task-list/pipes/priority.pipe';
 import {DateFilterPipe} from './task-list/pipes/date-filter.pipe';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { TaskListTableComponent } from './task-list/task-list-table/task-list-table.component';
+import { CategoryFilterPipe } from './task-list/pipes/category-filter.pipe';
 
 @NgModule({
   imports: [
@@ -27,7 +28,8 @@ import { TaskListTableComponent } from './task-list/task-list-table/task-list-ta
     TaskDetailsComponent,
     PriorityPipe,
     DateFilterPipe,
-    TaskListTableComponent
+    TaskListTableComponent,
+    CategoryFilterPipe
   ],
   providers: [
     ToDoTasksService

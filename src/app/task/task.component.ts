@@ -24,8 +24,7 @@ export class TaskComponent implements OnInit {
 
   addTask(task: Task): void {
     const newTask = Object.assign(task, {
-      date: task.date.toISOString(),
-      isCompleted: false
+      date: task.date.toUTCString(),
     });
     this.toDoTasksService.addTask(newTask)
       .then(() => this.toggleTaskForm());

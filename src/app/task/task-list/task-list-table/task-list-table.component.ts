@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit, Pipe} from '@angular/core';
 import {FirebaseListObservable} from 'angularfire2/database';
 import {Router} from '@angular/router';
 import {ToDoTasksService} from '../../services/to-do-tasks.service';
@@ -14,7 +14,13 @@ export class TaskListTableComponent implements OnInit {
   tasks: FirebaseListObservable<Task[]>;
   startDate: Date;
   endDate: Date;
-  isProcessing = false;
+  /**
+   * Property for filter by category
+   * @Input
+   * @property {string} overdue - Show overdue tasks
+   * @property {string} today - Show today tasks
+   */
+  @Input() filterProp: string;
 
   constructor(private toDoTasksService: ToDoTasksService, private router: Router) {
   }
@@ -24,10 +30,8 @@ export class TaskListTableComponent implements OnInit {
   }
 
   getTasks(): void {
-    this.isProcessing = true;
     this.toDoTasksService.getTasks().subscribe((tasks) => {
       this.tasks = tasks;
-      setTimeout(() => this.isProcessing = false, 2000);
     });
   }
 
