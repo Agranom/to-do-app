@@ -3,13 +3,13 @@
  */
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
-import {ToDoListComponent} from './to-do-list/to-do-list.component';
-import {TaskDetailsComponent} from './to-do-list/task-details/task-details.component';
+import {TaskDetailsComponent} from './task/task-details/task-details.component';
+import {TaskComponent} from './task/task.component';
 
 
 const routes: Routes = [
-  {path: '', redirectTo: '/to-do-list', pathMatch: 'full'},
-  {path: 'to-do-list', component: ToDoListComponent},
+  {path: '', redirectTo: '/task', pathMatch: 'full'},
+  {path: 'task', component: TaskComponent},
   {path: 'task-details/:id', component: TaskDetailsComponent}
 ];
 

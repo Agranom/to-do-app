@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
-import {ToDoTasksService} from '../to-do-tasks.service';
+import {ToDoTasksService} from '../services/to-do-tasks.service';
 import {Task} from '../models/task.interface';
 
 @Component({
@@ -28,7 +28,7 @@ export class TaskDetailsComponent implements OnInit {
 
   editTask(value): void {
     this.toDoTasksService.updateTask(this.taskKey, value)
-      .then(() => this.router.navigate(['/to-do-list']));
+      .then(() => this.router.navigate(['/task']));
   }
 
 }

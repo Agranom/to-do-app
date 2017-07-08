@@ -1,13 +1,13 @@
 import {Component, OnInit} from '@angular/core';
 import {Task} from './models/task.interface';
-import {ToDoTasksService} from './to-do-tasks.service';
+import {ToDoTasksService} from './services/to-do-tasks.service';
 
 @Component({
-  selector: 'app-to-do-list',
-  templateUrl: './to-do-list.component.html',
-  styleUrls: ['./to-do-list.component.sass'],
+  selector: 'app-task',
+  templateUrl: './task.component.html',
+  styleUrls: ['./task.component.sass'],
 })
-export class ToDoListComponent implements OnInit {
+export class TaskComponent implements OnInit {
 
   isNewTask = false;
 

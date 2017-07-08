@@ -4,22 +4,16 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
 
 import {AppComponent} from './app.component';
-import {ToDoListComponent} from './to-do-list/to-do-list.component';
 import {AppRoutingModule} from './routing.module';
 import {AngularFireModule} from 'angularfire2';
 import {AngularFireAuthModule} from 'angularfire2/auth';
 import {AngularFireDatabaseModule} from 'angularfire2/database';
-import {PriorityPipe} from './to-do-list/task-list/pipes/priority.pipe';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MyOwnAngularMaterialModule} from './my-own-angular-material/my-own-angular-material.module';
 import 'hammerjs';
-import {DateFilterPipe} from './to-do-list/task-list/pipes/date-filter.pipe';
-import {ToDoTasksService} from './to-do-list/to-do-tasks.service';
 import {Config} from './config';
 import {FormValidatorService} from './services/form-validator.service';
-import {TaskDetailsComponent} from './to-do-list/task-details/task-details.component';
-import {TaskFormComponent} from './to-do-list/task-form/task-form.component';
-import {TaskListComponent} from './to-do-list/task-list/task-list.component';
+import {TaskModule} from './task/task.module';
 
 export const firebaseConfig = {
   apiKey: 'AIzaSyCJAPAARygnIBL-4DA7k6R8DROQzDKsujg',
@@ -33,13 +27,7 @@ export const firebaseConfig = {
 
 @NgModule({
   declarations: [
-    AppComponent,
-    ToDoListComponent,
-    PriorityPipe,
-    DateFilterPipe,
-    TaskDetailsComponent,
-    TaskFormComponent,
-    TaskListComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -51,9 +39,10 @@ export const firebaseConfig = {
     AngularFireAuthModule,
     AngularFireDatabaseModule,
     ReactiveFormsModule,
-    MyOwnAngularMaterialModule
+    MyOwnAngularMaterialModule,
+    TaskModule
   ],
-  providers: [ToDoTasksService, Config, FormValidatorService],
+  providers: [Config, FormValidatorService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

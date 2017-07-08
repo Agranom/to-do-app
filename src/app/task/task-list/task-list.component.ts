@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FirebaseListObservable} from 'angularfire2/database';
-import {ToDoTasksService} from '../to-do-tasks.service';
+import {ToDoTasksService} from '../services/to-do-tasks.service';
 import {Task} from '../models/task.interface';
 import {Router} from '@angular/router';
 
