@@ -5,7 +5,7 @@ import {FirebaseListObservable} from 'angularfire2/database';
   name: 'dateFilter'
 })
 export class DateFilterPipe implements PipeTransform {
-/*TODO: replace this fn*/
+/*TODO: replace this fn to MomentJs*/
   private generateDate(year, month, day): Date {
     return new Date(year, month, day);
   }

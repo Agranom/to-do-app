@@ -1,5 +1,6 @@
 import {Pipe, PipeTransform} from '@angular/core';
 import {getDateWithoutTime} from '../../../shared/common-functions';
+import * as moment from 'moment';
 
 @Pipe({
   name: 'categoryFilter'
@@ -12,15 +13,12 @@ export class CategoryFilterPipe implements PipeTransform {
     }
     if (category === 'overdue') {
       return items.filter(item => {
-        /*TODO: delete this transpire*/
-        const itemDate = getDateWithoutTime(new Date(item.date));
-        const currentDate = getDateWithoutTime(new Date());
-        return itemDate < currentDate;
+        return moment(item.date).isBefore(moment(), 'day');
       });
     }
     if (category === 'today') {
       return items.filter(item => {
-        return getDateWithoutTime(new Date(item.date)) === getDateWithoutTime(new Date());
+        return moment(item.date).isSame(moment(), 'day');
       });
     }
   }

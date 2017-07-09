@@ -3,6 +3,8 @@ import {FirebaseListObservable} from 'angularfire2/database';
 import {Router} from '@angular/router';
 import {ToDoTasksService} from '../../services/to-do-tasks.service';
 import {Task} from '../../models/task.interface';
+import * as moment from 'moment';
+import {getDateWithoutTime} from "../../../shared/common-functions";
 
 @Component({
   selector: 'app-task-list-table',
@@ -48,7 +50,7 @@ export class TaskListTableComponent implements OnInit {
   }
 
   isTaskOverdue(taskDate: string): boolean {
-    return new Date(taskDate) < new Date();
+    return moment(taskDate).isBefore(moment(), 'day');
   }
 
 }
