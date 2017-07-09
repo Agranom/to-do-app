@@ -3,6 +3,9 @@ import {AngularFireDatabase, FirebaseListObservable} from 'angularfire2/database
 import {Task} from '../models/task.interface';
 import {Config} from '../../config';
 import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/observable/of';
+
+
 
 @Injectable()
 export class ToDoTasksService {

@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {ToDoTasksService} from '../services/to-do-tasks.service';
 import {Task} from '../models/task.interface';
+import 'rxjs/add/operator/switchMap';
+
 
 @Component({
   selector: 'app-task-details',
