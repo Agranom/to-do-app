@@ -4,6 +4,7 @@ import {Router} from '@angular/router';
 import {ToDoTasksService} from '../../services/to-do-tasks.service';
 import {Task} from '../../models/task.interface';
 import * as moment from 'moment';
+import {MdSnackBar} from "@angular/material";
 
 
 @Component({
@@ -25,7 +26,8 @@ export class TaskListTableComponent implements OnInit {
   @Input() filterProp: string;
   private minDate = new Date();
 
-  constructor(private toDoTasksService: ToDoTasksService, private router: Router) {
+  constructor(private toDoTasksService: ToDoTasksService, private router: Router,
+              private snackBar: MdSnackBar) {
   }
 
   ngOnInit() {
@@ -52,7 +54,13 @@ export class TaskListTableComponent implements OnInit {
 
   postponeTask(key: string, task: Task, newDate: Date): void {
     const newTask = Object.assign(task, {date: newDate.toUTCString()});
-    setTimeout(() => this.toDoTasksService.updateTask(key, newTask));
+    setTimeout(() => this.toDoTasksService.updateTask(key, newTask)
+      .then(() => {
+        this.snackBar.open('Postponed', '', {
+          duration: 1000
+        });
+      })
+    );
   }
 
   private isTaskOverdue(taskDate: string): boolean {
