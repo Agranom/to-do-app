@@ -33,8 +33,11 @@
     </td>
     <td>
       <input type="hidden" [mdDatepicker]="postponeDp" [min]="minDate">
-      <md-datepicker #postponeDp [touchUi]="true" (selectedChanged)="postponeTask(task.$key, task, $event)"></md-datepicker>
-      <button md-raised-button [disabled]="task.isCompleted" (click)="postponeDp.open()">Postpone</button>
+      <md-datepicker #postponeDp [touchUi]="true"
+                     (selectedChanged)="postponeTask(task.$key, task, $event)"></md-datepicker>
+      <button md-raised-button [disabled]="task.isCompleted" (click)="postponeDp.open()"
+              mdTooltip="Postpone your task to another day">Postpone
+      </button>
     </td>
   </tr>
   </tbody>
