@@ -7,6 +7,7 @@
     <th>Completed</th>
     <th>Date</th>
     <th>Actions</th>
+    <th>&nbsp;</th>
   </tr>
   </thead>
   <tbody class="task-table__body">
@@ -29,6 +30,11 @@
       <button class="" md-mini-fab (click)="deleteTask(task.$key)" [color]="'warn'">
         <md-icon>delete</md-icon>
       </button>
+    </td>
+    <td>
+      <input type="hidden" [mdDatepicker]="postponeDp" [min]="minDate">
+      <md-datepicker #postponeDp [touchUi]="true" (selectedChanged)="postponeTask(task.$key, task, $event)"></md-datepicker>
+      <button md-raised-button [disabled]="task.isCompleted" (click)="postponeDp.open()">Postpone</button>
     </td>
   </tr>
   </tbody>

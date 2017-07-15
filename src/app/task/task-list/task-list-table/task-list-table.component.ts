@@ -1,10 +1,10 @@
-import {Component, Input, OnInit, Pipe} from '@angular/core';
+import {AfterViewInit, Component, Input, OnInit, Pipe, ViewChild} from '@angular/core';
 import {FirebaseListObservable} from 'angularfire2/database';
 import {Router} from '@angular/router';
 import {ToDoTasksService} from '../../services/to-do-tasks.service';
 import {Task} from '../../models/task.interface';
 import * as moment from 'moment';
-import {getDateWithoutTime} from "../../../shared/common-functions";
+
 
 @Component({
   selector: 'app-task-list-table',
@@ -23,6 +23,7 @@ export class TaskListTableComponent implements OnInit {
    * @property {string} today - Show today tasks
    */
   @Input() filterProp: string;
+  private minDate = new Date();
 
   constructor(private toDoTasksService: ToDoTasksService, private router: Router) {
   }
@@ -49,7 +50,12 @@ export class TaskListTableComponent implements OnInit {
     this.router.navigate(['/task-details', task.$key]);
   }
 
-  isTaskOverdue(taskDate: string): boolean {
+  postponeTask(key: string, task: Task, newDate: Date): void {
+    const newTask = Object.assign(task, {date: newDate.toUTCString()});
+    setTimeout(() => this.toDoTasksService.updateTask(key, newTask));
+  }
+
+  private isTaskOverdue(taskDate: string): boolean {
     return moment(taskDate).isBefore(moment(), 'day');
   }
 
