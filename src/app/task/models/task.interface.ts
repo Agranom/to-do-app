@@ -1,4 +1,4 @@
-import {Priority} from '../priority.enum';
+import {Priority} from '../shared/priority.enum';
 
 export interface Task {
   title: string;

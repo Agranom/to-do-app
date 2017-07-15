@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChange, SimpleChanges} from '@angular/core';
 import {AbstractControl, FormBuilder, Validators, FormGroup} from '@angular/forms';
 import {FormValidatorService} from '../../services/form-validator.service';
-import {Priority} from '../priority.enum';
+import {Priority} from '../shared/priority.enum';
 import {Task} from '../models/task.interface';
 import {expiredDateValidator} from '../../form-validators/form-validators';
 
@@ -24,6 +24,10 @@ export class TaskFormComponent implements OnInit, OnChanges {
 
   constructor(private formBuilder: FormBuilder, private formValidatorService: FormValidatorService) {
     this.buildForm();
+
+    for (let obj in Priority) {
+      this.priorities.push(Priority[obj]);
+    }
   }
 
   ngOnInit() {
@@ -33,16 +37,8 @@ export class TaskFormComponent implements OnInit, OnChanges {
     this.taskForm = this.formBuilder.group({
       title: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(55)]],
       description: ['', Validators.maxLength(255)],
-      priority: '1',
+      priority: Priority.NORMAL,
       date: [this.currentDate, [Validators.required, expiredDateValidator()]]
-    });
-
-    /**
-     * Get list of priorities to set value for radio buttons
-     * @return {number[]} Array of priorities
-     */
-    this.priorities = Object.keys(Priority).filter(priority => {
-      return parseInt(priority, 10) >= 0;
     });
   }
 

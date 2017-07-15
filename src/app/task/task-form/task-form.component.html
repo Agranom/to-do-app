@@ -38,7 +38,7 @@
           <legend>Priority</legend>
           <div class="form-check form-check-inline" *ngFor="let priority of priorities">
             <md-radio-group formControlName="priority" [name]="'priority'">
-              <md-radio-button [value]="priority">{{priority | priority | lowercase}}</md-radio-button>
+              <md-radio-button [value]="priority">{{priority}}</md-radio-button>
             </md-radio-group>
           </div>
         </fieldset>
