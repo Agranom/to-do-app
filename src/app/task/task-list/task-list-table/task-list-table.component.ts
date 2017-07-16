@@ -1,5 +1,4 @@
-import {AfterViewInit, Component, Input, OnDestroy, OnInit, Pipe, ViewChild} from '@angular/core';
-import {FirebaseListObservable} from 'angularfire2/database';
+import {Component, HostListener, Input, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {ToDoTasksService} from '../../services/to-do-tasks.service';
 import {Task} from '../../models/task.interface';
@@ -12,7 +11,7 @@ import {MdSnackBar} from '@angular/material';
   templateUrl: './task-list-table.component.html',
   styleUrls: ['./task-list-table.component.sass']
 })
-export class TaskListTableComponent implements OnInit, OnDestroy {
+export class TaskListTableComponent implements OnInit {
 
   tasks: Task[];
   @Input() startDate: Date;
@@ -34,24 +33,9 @@ export class TaskListTableComponent implements OnInit, OnDestroy {
     this.getTasks();
   }
 
-  ngOnDestroy() {
-    // this.toDoTasksService.deleteCompletedTasks().subscribe((tasks) => {
-    //   tasks.forEach(task => {
-    //     if (task.isCompleted === true) {
-    //       this.toDoTasksService.deleteTask(task.$key);
-    //     }
-    //   })
-    // });
-    // this.toDoTasksService.deleteCompletedTasks().subscribe(tasks => {
-    //   console.log(`Destroy if dired`);
-    //   tasks.map(task => {
-    //     this.deleteTask(task.$key);
-    //   })
-    // });
-    console.log(`Destroy`);
-    // this.toDoTasksService.deleteCompletedTasks();
-    this.deleteCompleted();
-    this.deleteCompleted2();
+  @HostListener('window:pagehide')
+  onPageHide() {
+    this.toDoTasksService.deleteCompletedTasks();
   }
 
   getTasks(): void {
@@ -66,14 +50,6 @@ export class TaskListTableComponent implements OnInit, OnDestroy {
 
   deleteTask(key: string): void {
     this.toDoTasksService.deleteTask(key);
-  }
-
-  deleteCompleted() {
-    console.log('Fired')
-  }
-
-  deleteCompleted2() {
-    this.toDoTasksService.deleteCompletedTasks()
   }
 
   onSelect(task): void {

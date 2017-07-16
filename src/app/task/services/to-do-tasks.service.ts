@@ -38,11 +38,11 @@ export class ToDoTasksService {
   }
 
   deleteCompletedTasks() {
-    this.afDatabase.list(this.config.TASKS).subscribe(tasks => tasks.map(task => {
+    this.afDatabase.list(this.config.TASKS).forEach(tasks => tasks.map(task => {
       if (task.isCompleted) {
         this.deleteTask(task.$key)
       }
-    }))
+    }));
   }
 
 }
