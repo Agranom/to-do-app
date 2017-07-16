@@ -8,30 +8,32 @@ import {TaskFormComponent} from './task-form/task-form.component';
 import {TaskDetailsComponent} from './task-details/task-details.component';
 import {ToDoTasksService} from './services/to-do-tasks.service';
 import {DateFilterPipe} from './task-list/pipes/date-filter.pipe';
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import { TaskListTableComponent } from './task-list/task-list-table/task-list-table.component';
-import { CategoryFilterPipe } from './task-list/pipes/category-filter.pipe';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {TaskListTableComponent} from './task-list/task-list-table/task-list-table.component';
+import {CategoryFilterPipe} from './task-list/pipes/category-filter.pipe';
+import {ConfirmDialogComponent} from '../shared/confirm-dialog/confirm-dialog.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    MyOwnAngularMaterialModule,
-    FormsModule,
-    ReactiveFormsModule
-  ],
-  exports: [],
-  declarations: [
-    TaskComponent,
-    TaskListComponent,
-    TaskFormComponent,
-    TaskDetailsComponent,
-    DateFilterPipe,
-    TaskListTableComponent,
-    CategoryFilterPipe
-  ],
-  providers: [
-    ToDoTasksService
-  ],
+	imports: [
+		CommonModule,
+		MyOwnAngularMaterialModule,
+		FormsModule,
+		ReactiveFormsModule
+	],
+	exports: [],
+	declarations: [
+		TaskComponent,
+		TaskListComponent,
+		TaskFormComponent,
+		TaskDetailsComponent,
+		DateFilterPipe,
+		TaskListTableComponent,
+		CategoryFilterPipe
+	],
+	providers: [
+		ToDoTasksService
+	],
+	entryComponents: [ConfirmDialogComponent]
 })
 export class TaskModule {
 }
