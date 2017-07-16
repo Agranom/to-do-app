@@ -28,8 +28,8 @@ export class TaskDetailsComponent implements OnInit {
       .subscribe((task: Task) => this.task = task);
   }
 
-  editTask(value): void {
-    this.toDoTasksService.updateTask(this.taskKey, value)
+  editTask(task): void {
+    this.toDoTasksService.updateTask(this.taskKey, task)
       .then(() => this.router.navigate(['/task']));
   }
 

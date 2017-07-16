@@ -6,7 +6,6 @@ import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 
 
-
 @Injectable()
 export class ToDoTasksService {
 
@@ -15,9 +14,10 @@ export class ToDoTasksService {
   constructor(private afDatabase: AngularFireDatabase, private config: Config) {
   }
 
-  getTasks(): Observable<any> {
+  getTasks(): FirebaseListObservable<Task[]> {
     this.tasks = this.afDatabase.list(this.config.TASKS);
-    return Observable.of(this.tasks);
+    const tasks = this.tasks;
+    return tasks;
   }
 
   getTask(key: string): Observable<Task> {
@@ -33,12 +33,16 @@ export class ToDoTasksService {
     return this.tasks.update(key, task);
   }
 
-  completeTask(key: string, status: boolean) {
-    this.tasks.update(key, {isCompleted: status});
-  }
-
   deleteTask(key: string) {
     this.tasks.remove(key);
+  }
+
+  deleteCompletedTasks() {
+    this.afDatabase.list(this.config.TASKS).subscribe(tasks => tasks.map(task => {
+      if (task.isCompleted) {
+        this.deleteTask(task.$key)
+      }
+    }))
   }
 
 }

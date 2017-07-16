@@ -7,4 +7,4 @@ export function expiredDateValidator(): ValidatorFn {
     const currentDate = getDateWithoutTime(new Date);
     return (date < currentDate) ? {'expiredDate': {date}} : null;
   };
-};
+}

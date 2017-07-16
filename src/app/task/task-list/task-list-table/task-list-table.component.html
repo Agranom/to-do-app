@@ -12,7 +12,7 @@
   </thead>
   <tbody class="task-table__body">
   <tr class="task-table__item"
-      *ngFor="let task of tasks | async | categoryFilter: filterProp | dateFilter: startDate: endDate; let i = index"
+      *ngFor="let task of tasks | categoryFilter: filterProp | dateFilter: startDate: endDate; let i = index"
       [ngClass]="{'completed': task.isCompleted, 'overdue': isTaskOverdue(task.date)}">
     <td>{{i + 1}}</td>
     <td mdTooltip="{{task.description}}">{{task.title}}</td>
