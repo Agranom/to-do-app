@@ -4,7 +4,7 @@
       <div class="col-8">
         <div class="form-group">
           <md-input-container class="task-form__field" [color]="'accent'">
-            <input type="text" mdInput placeholder="Task title" formControlName="title">
+            <input mdInput placeholder="Task title" formControlName="title" autofocus>
           </md-input-container>
           <div [hidden]="taskForm.get('title').errors && !isSubmitted">
             <span class="text-danger">{{getValidatorMessage(taskForm.get('title'), 'Title')}}</span>
