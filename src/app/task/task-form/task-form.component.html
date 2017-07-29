@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-8">
         <div class="form-group">
-          <md-input-container class="task-form__field" [color]="'accent'">
+          <md-input-container class="task-form__field" [color]="'primary'">
             <input mdInput placeholder="Task title" formControlName="title" autofocus>
           </md-input-container>
           <div [hidden]="taskForm.get('title').errors && !isSubmitted">
@@ -13,7 +13,7 @@
       </div>
       <div class="col-4">
         <div class="form-group">
-          <md-input-container class="task-form__field" [color]="'accent'">
+          <md-input-container class="task-form__field" [color]="'primary'">
             <input mdInput [mdDatepicker]="datepicker"  formControlName="date">
             <button mdSuffix [mdDatepickerToggle]="datepicker"></button>
           </md-input-container>
@@ -25,7 +25,7 @@
       </div>
       <div class="col-8">
         <div class="form-group">
-          <md-input-container class="task-form__field" [color]="'accent'">
+          <md-input-container class="task-form__field" [color]="'primary'">
             <textarea mdInput placeholder="Description" formControlName="description"></textarea>
             <div [hidden]="taskForm.get('description').errors && !isSubmitted">
               <span class="text-danger">{{getValidatorMessage(taskForm.get('description'), 'Description')}}</span>
@@ -38,12 +38,12 @@
           <legend>Priority</legend>
           <div class="form-check form-check-inline" *ngFor="let priority of priorities">
             <md-radio-group formControlName="priority" [name]="'priority'">
-              <md-radio-button [value]="priority">{{priority}}</md-radio-button>
+              <md-radio-button [value]="priority" [color]="'primary'">{{priority}}</md-radio-button>
             </md-radio-group>
           </div>
         </fieldset>
       </div>
     </div>
-    <button md-raised-button type="submit">{{buttonText || 'Continue'}}</button>
+    <button md-raised-button>{{buttonText || 'Continue'}}</button>
   </form>
 </div>

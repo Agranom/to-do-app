@@ -19,7 +19,7 @@
     <td>{{task.priority}}</td>
     <td>
       <md-checkbox [checked]="task.isCompleted" #isCompleted
-                   (change)="completeTask(task.$key, isCompleted.checked)"></md-checkbox>
+                   (change)="completeTask(task.$key, isCompleted.checked)" [color]="'primary'"></md-checkbox>
     </td>
     <td>{{task.date | date}}</td>
     <td class="task-table__actions">
@@ -32,7 +32,7 @@
       </button>
     </td>
     <td>
-      <input type="hidden" [mdDatepicker]="postponeDp" [min]="minDate">
+      <input type="hidden" [mdDatepicker]="postponeDp">
       <md-datepicker #postponeDp [touchUi]="true"
                      (selectedChanged)="postponeTask(task.$key, task, $event)"></md-datepicker>
       <button md-raised-button [disabled]="task.isCompleted" (click)="postponeDp.open()"

@@ -24,7 +24,6 @@ export class TaskListTableComponent implements OnInit {
 	 * @property {string} today - Show today tasks
 	 */
 	@Input() filterProp: string;
-	private minDate = new Date();
 
 	constructor(private toDoTasksService: ToDoTasksService, private router: Router,
 				private snackBar: MdSnackBar, private dialog: MdDialog) {
@@ -72,7 +71,7 @@ export class TaskListTableComponent implements OnInit {
 		);
 	}
 
-	private isTaskOverdue(taskDate: string): boolean {
+	isTaskOverdue(taskDate: string): boolean {
 		return moment(taskDate).isBefore(moment(), 'day');
 	}
 

@@ -17,14 +17,14 @@
       <md-tab label="All tasks">
         <div class="filter justify-content-end">
           <div class="col-2">
-            <md-input-container class="" [color]="'accent'">
+            <md-input-container class="" [color]="'primary'">
               <input mdInput [mdDatepicker]="dpStartDate" placeholder="from" [(ngModel)]="startDate">
               <button mdSuffix [mdDatepickerToggle]="dpStartDate"></button>
             </md-input-container>
             <md-datepicker #dpStartDate [touchUi]="false" [startAt]="startDate"></md-datepicker>
           </div>
           <div class="col-2">
-            <md-input-container class="" [color]="'accent'">
+            <md-input-container class="" [color]="'primary'">
               <input mdInput [mdDatepicker]="dpEndDate" placeholder="to" [(ngModel)]="endDate">
               <button mdSuffix [mdDatepickerToggle]="dpEndDate"></button>
             </md-input-container>
