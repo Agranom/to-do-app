@@ -3,8 +3,9 @@ import {CommonModule} from '@angular/common';
 import {
 	MdButtonModule, MdCheckboxModule, MdDatepickerModule, MdDialogModule, MdIconModule, MdInputModule,
 	MdNativeDateModule, MdProgressSpinnerModule, MdRadioModule,
-	MdSidenavModule, MdSnackBarModule, MdTabsModule, MdTooltipModule
+	MdSidenavModule, MdSnackBarModule, MdTableModule, MdTabsModule, MdTooltipModule
 } from '@angular/material';
+import {CdkTableModule} from '@angular/cdk';
 
 @NgModule({
 	imports: [
@@ -21,7 +22,9 @@ import {
 		MdTooltipModule,
 		MdTabsModule,
 		MdSnackBarModule,
-		MdDialogModule
+		MdDialogModule,
+		MdTableModule,
+		CdkTableModule
 	],
 	exports: [
 		MdSidenavModule,
@@ -36,7 +39,9 @@ import {
 		MdTooltipModule,
 		MdTabsModule,
 		MdSnackBarModule,
-	  	MdDialogModule
+	  	MdDialogModule,
+		MdTableModule,
+		CdkTableModule
 	],
 })
 export class MyOwnAngularMaterialModule {
