@@ -2,22 +2,33 @@
 @import "css/variables"
 
 html
-  font-size: 14px
+	font-size: 14px
 
 body
-  background-color: $body-bg
+	background-color: $body-bg
 
 .flex-menu
-  display: flex
-  align-items: center
+	display: flex
+	align-items: center
+
+.flex-row
+	display: flex
+	flex-direction: row
+
+.flex-column
+	display: flex
+	flex-direction: column
+
+.flex-left
+	margin-left: auto !important
 
 button
-  &:focus
-    outline: none
+	&:focus
+		outline: none
 
 ul
-  list-style: none
+	list-style: none
 
 a
-  &:hover
-    text-decoration: none
+	&:hover
+		text-decoration: none
