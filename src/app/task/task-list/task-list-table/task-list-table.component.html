@@ -16,7 +16,10 @@
       [ngClass]="{'completed': task.isCompleted, 'overdue': isTaskOverdue(task.date)}">
     <td>{{i + 1}}</td>
     <td mdTooltip="{{task.description}}">{{task.title}}</td>
-    <td>{{task.priority}}</td>
+    <td>
+		{{task.priority}}
+		<md-icon *ngIf="task.priority === 'high'" color="warn" style="vertical-align: middle">whatshot</md-icon>
+	</td>
     <td>
       <md-checkbox [checked]="task.isCompleted" #isCompleted
                    (change)="completeTask(task.$key, isCompleted.checked)" [color]="'primary'"></md-checkbox>
