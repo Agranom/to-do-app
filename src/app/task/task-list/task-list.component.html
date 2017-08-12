@@ -1,6 +1,6 @@
-<h1>My To Do List</h1>
-<div class="row task-board">
-	<div class="col">
+<h2>My To Do List</h2>
+<div class="task-board">
+	<div class="">
 		<md-tab-group>
 			<md-tab label="Today tasks">
 				<app-task-list-table [filterProp]="'today'"></app-task-list-table>
@@ -15,7 +15,7 @@
 							<input mdInput [mdDatepicker]="dpStartDate" placeholder="from" [(ngModel)]="startDate">
 							<button mdSuffix [mdDatepickerToggle]="dpStartDate"></button>
 						</md-input-container>
-						<md-datepicker #dpStartDate [touchUi]="false" [startAt]="startDate"></md-datepicker>
+						<md-datepicker #dpStartDate [touchUi]="true" [startAt]="startDate"></md-datepicker>
 					</div>
 					<div class="">
 						<md-input-container class="full-width" [color]="'primary'">

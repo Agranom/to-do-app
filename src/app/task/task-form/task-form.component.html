@@ -14,7 +14,7 @@
 					<input mdInput [mdDatepicker]="datepicker" formControlName="date">
 					<button mdSuffix [mdDatepickerToggle]="datepicker"></button>
 				</md-input-container>
-				<md-datepicker #datepicker [touchUi]="false" [startAt]="startDate"></md-datepicker>
+				<md-datepicker #datepicker [touchUi]="true" [startAt]="startDate"></md-datepicker>
 				<div [hidden]="taskForm.get('date').errors && !isSubmitted">
 					<span class="text-danger">{{getValidatorMessage(taskForm.get('date'), 'Date')}}</span>
 				</div>
