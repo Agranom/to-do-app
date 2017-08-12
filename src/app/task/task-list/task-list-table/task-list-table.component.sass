@@ -5,20 +5,33 @@
 	min-height: 20vh
 
 .task-table
-  margin-top: 2rem
-  &__header
-    background-color: transparentize($main-color-light, 0.7)
-  &__body
-    td
-      vertical-align: middle
-  &__item
-    &.completed
-      color: $completed-text
-      td:not(.task-table__actions)
-        text-decoration: line-through
+	margin-top: 2rem
+	&__header
+		background-color: transparentize($main-color-light, 0.7)
+	&__body
+		td
+			vertical-align: middle
+	&__item
+		&.completed
+			color: $completed-text
+			td:not(.task-table__actions)
+				text-decoration: line-through
 
 .edit-button
-  margin-right: 1rem
+	margin-right: 1rem
 
 .overdue
-  color: $warn-color
+	color: $warn-color
+
+@media screen and (max-width: 767px)
+	.task-table
+		&__header
+			display: none
+		&__body
+			tr
+				display: block
+				&:not(:first-child)
+					margin-top: 3rem
+			td
+				display: block
+				text-align: center
