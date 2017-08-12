@@ -1,7 +1,9 @@
 .task-board
-  position: relative
-  margin-top: 2rem
-
-.filter
-  display: flex
-  margin-top: 1rem
+	position: relative
+	margin-top: 2rem
+	&__filter
+		display: grid
+		grid-template-columns: minmax(20vw, 300px) minmax(20vw, 300px)
+		grid-gap: 2rem
+		justify-content: end
+		margin-top: 1rem

@@ -1,38 +1,32 @@
-<div class="row justify-content-between">
-  <div class="col-8">
-    <h1>My To Do List</h1>
-  </div>
-  <div class="col">
-  </div>
-</div>
+<h1>My To Do List</h1>
 <div class="row task-board">
-  <div class="col">
-    <md-tab-group>
-      <md-tab label="Today tasks">
-        <app-task-list-table [filterProp]="'today'"></app-task-list-table>
-      </md-tab>
-      <md-tab label="Overdue tasks">
-        <app-task-list-table [filterProp]="'overdue'"></app-task-list-table>
-      </md-tab>
-      <md-tab label="All tasks">
-        <div class="filter justify-content-end">
-          <div class="col-2">
-            <md-input-container class="" [color]="'primary'">
-              <input mdInput [mdDatepicker]="dpStartDate" placeholder="from" [(ngModel)]="startDate">
-              <button mdSuffix [mdDatepickerToggle]="dpStartDate"></button>
-            </md-input-container>
-            <md-datepicker #dpStartDate [touchUi]="false" [startAt]="startDate"></md-datepicker>
-          </div>
-          <div class="col-2">
-            <md-input-container class="" [color]="'primary'">
-              <input mdInput [mdDatepicker]="dpEndDate" placeholder="to" [(ngModel)]="endDate">
-              <button mdSuffix [mdDatepickerToggle]="dpEndDate"></button>
-            </md-input-container>
-            <md-datepicker #dpEndDate [touchUi]="true" [startAt]="endDate"></md-datepicker>
-          </div>
-        </div>
-        <app-task-list-table [startDate]="startDate" [endDate]="endDate"></app-task-list-table>
-      </md-tab>
-    </md-tab-group>
-  </div>
+	<div class="col">
+		<md-tab-group>
+			<md-tab label="Today tasks">
+				<app-task-list-table [filterProp]="'today'"></app-task-list-table>
+			</md-tab>
+			<md-tab label="Overdue tasks">
+				<app-task-list-table [filterProp]="'overdue'"></app-task-list-table>
+			</md-tab>
+			<md-tab label="All tasks">
+				<div class="task-board__filter">
+					<div class="">
+						<md-input-container class="full-width" [color]="'primary'">
+							<input mdInput [mdDatepicker]="dpStartDate" placeholder="from" [(ngModel)]="startDate">
+							<button mdSuffix [mdDatepickerToggle]="dpStartDate"></button>
+						</md-input-container>
+						<md-datepicker #dpStartDate [touchUi]="false" [startAt]="startDate"></md-datepicker>
+					</div>
+					<div class="">
+						<md-input-container class="full-width" [color]="'primary'">
+							<input mdInput [mdDatepicker]="dpEndDate" placeholder="to" [(ngModel)]="endDate">
+							<button mdSuffix [mdDatepickerToggle]="dpEndDate"></button>
+						</md-input-container>
+						<md-datepicker #dpEndDate [touchUi]="true" [startAt]="endDate"></md-datepicker>
+					</div>
+				</div>
+				<app-task-list-table [startDate]="startDate" [endDate]="endDate"></app-task-list-table>
+			</md-tab>
+		</md-tab-group>
+	</div>
 </div>

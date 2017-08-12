@@ -1,7 +1,8 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {
-	MdButtonModule, MdCheckboxModule, MdDatepickerModule, MdDialogModule, MdIconModule, MdInputModule,
+	MdButtonModule, MdButtonToggleModule, MdCheckboxModule, MdDatepickerModule, MdDialogModule, MdIconModule,
+	MdInputModule,
 	MdNativeDateModule, MdProgressSpinnerModule, MdRadioModule,
 	MdSidenavModule, MdSnackBarModule, MdTabsModule, MdToolbarModule, MdTooltipModule
 } from '@angular/material';
@@ -22,7 +23,8 @@ import {
 		MdTabsModule,
 		MdSnackBarModule,
 		MdDialogModule,
-		MdToolbarModule
+		MdToolbarModule,
+		MdButtonToggleModule
 	],
 	exports: [
 		MdSidenavModule,
@@ -38,7 +40,8 @@ import {
 		MdTabsModule,
 		MdSnackBarModule,
 	  	MdDialogModule,
-		MdToolbarModule
+		MdToolbarModule,
+		MdButtonToggleModule
 	],
 })
 export class MyOwnAngularMaterialModule {
