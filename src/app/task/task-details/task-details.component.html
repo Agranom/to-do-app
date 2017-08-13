@@ -6,4 +6,4 @@
 	<h2>Edit task</h2>
 </div>
 <app-task-form class="edit-task-form" *ngIf="task" [buttonText]="'Save'" [task]="task"
-			   (onSubmitted)="editTask($event)"></app-task-form>
+			   (onSubmitted)="editTask($event)" #taskForm></app-task-form>

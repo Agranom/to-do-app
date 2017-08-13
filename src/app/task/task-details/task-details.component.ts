@@ -1,9 +1,12 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {ToDoTasksService} from '../services/to-do-tasks.service';
 import {Task} from '../models/task.interface';
 import 'rxjs/add/operator/switchMap';
-import {Location} from '@angular/common';
+import {TaskFormComponent} from '../task-form/task-form.component';
+import {MdDialog} from '@angular/material';
+import {ConfirmDialogComponent} from '../../shared/confirm-dialog/confirm-dialog.component';
+import {Observable} from 'rxjs/Observable';
 
 
 @Component({
@@ -15,10 +18,11 @@ export class TaskDetailsComponent implements OnInit {
 
 	task: Task;
 	taskKey: string;
+	@ViewChild('taskForm') taskForm: TaskFormComponent;
 
 	constructor(private route: ActivatedRoute, private router: Router,
 				private toDoTasksService: ToDoTasksService,
-				private location: Location) {
+				private dialog: MdDialog) {
 	}
 
 	ngOnInit() {
@@ -32,10 +36,21 @@ export class TaskDetailsComponent implements OnInit {
 
 	editTask(task): void {
 		this.toDoTasksService.updateTask(this.taskKey, task)
-			.then(() => this.router.navigate(['/task']));
+			.then(() => {
+				this.taskForm.taskForm.markAsPristine();
+				this.router.navigate(['/task'])
+			}).catch((error) => console.log(error));
 	}
 
 	back(): void {
-		this.location.back();
+		this.router.navigate(['../']);
+	}
+
+	canDeactivate(): boolean | Observable<boolean> {
+		if (!this.task || !this.taskForm.taskForm.dirty) {
+			return true;
+		}
+
+		return this.dialog.open(ConfirmDialogComponent).afterClosed();
 	}
 }
