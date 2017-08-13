@@ -35,7 +35,7 @@
       </button>
     </td>
     <td>
-      <input type="hidden" [mdDatepicker]="postponeDp">
+      <input type="hidden" [mdDatepicker]="postponeDp" [min]="currentDate">
       <md-datepicker #postponeDp [touchUi]="true"
                      (selectedChanged)="postponeTask(task.$key, $event)"></md-datepicker>
       <button md-raised-button [disabled]="task.isCompleted" (click)="postponeDp.open()"

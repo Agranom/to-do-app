@@ -15,6 +15,7 @@ import {ConfirmDialogComponent} from '../../../shared/confirm-dialog/confirm-dia
 export class TaskListTableComponent implements OnInit {
 
 	tasks: Task[];
+	currentDate = new Date();
 	@Input() startDate: Date;
 	@Input() endDate: Date;
 	/**
