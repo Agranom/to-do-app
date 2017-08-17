@@ -1,5 +1,5 @@
 #!/bin/bash
-filesChanged=$(git ls-tree -r branch)
+filesChanged=./dist/*
 if [ ${#filesChanged[@]} -eq 0 ]; then
     echo "No files to update"
 else
