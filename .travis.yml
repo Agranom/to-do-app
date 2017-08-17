@@ -9,7 +9,6 @@ env:
   - FTP_USER=fagrano_todo
   - FTP_PASS=*&}*28Hu
 install:
-  - travis_wait mvn install
   - npm install
   - npm build
 after_success:
