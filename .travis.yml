@@ -20,4 +20,4 @@ install:
   - npm install
   - npm build
 after_success:
-  -  "curl --ftp-create-dirs -T ./dist/*.js -u $FTP_USER:$FTP_PASSWORD ftp://fagrano.beget.tech/"
+  -  "curl --ftp-create-dirs -T ./dist/**.js -u $FTP_USER:$FTP_PASSWORD ftp://fagrano.beget.tech/"
