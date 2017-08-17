@@ -6,8 +6,8 @@ branches:
     - master
 env:
   global:
-  - FTP_USER=fagrano_todo
-  - FTP_PASS=28Hu
+  - "FTP_USER=fagrano_todo"
+  - "FTP_PASSWORD=agranom777"
 
 before_script:
   - npm install -g @angular/cli
@@ -20,4 +20,4 @@ install:
   - npm install
   - npm build
 after_success:
-  - ./deploy.sh
+  -  "curl --ftp-create-dirs -T ./dist/* -u $FTP_USER:$FTP_PASSWORD ftp://fagrano.beget.tech/paradise-studio.com.ua/public_html/todo/"
