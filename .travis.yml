@@ -8,6 +8,13 @@ env:
   global:
   - FTP_USER=fagrano_todo
   - FTP_PASS=28Hu
+
+before_script:
+  - npm install -g @angular/cli
+
+script:
+  - ng build --prod
+
 install:
   - "echo $FTP_USER"
   - npm install
