@@ -20,4 +20,4 @@ install:
   - npm install
   - npm build
 after_success:
-  -  "curl --ftp-create-dirs -T /dist/* -u $FTP_USER:$FTP_PASSWORD ftp://fagrano.beget.tech/paradise-studio.com.ua/public_html/todo/"
+  -  "curl --ftp-create-dirs -T ./dist/index.html -u $FTP_USER:$FTP_PASSWORD ftp://fagrano.beget.tech/"
