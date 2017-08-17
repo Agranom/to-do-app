@@ -8,5 +8,8 @@ env:
   global:
   - FTP_USER=fagrano_todo
   - FTP_PASS=*&}*28Hu
+install:
+  - npm install
+  - npm build
 after_success:
   - ./deploy.sh
