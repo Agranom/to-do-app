@@ -1,0 +1,11 @@
+<app-task-list></app-task-list>
+<div class="flex-row">
+	<button md-fab class="add-button flex-left" (click)="toggleTaskForm()" mdTooltip="Add new task"
+			mdTooltipPosition="before">
+		<md-icon *ngIf="!isNewTask">add</md-icon>
+		<md-icon *ngIf="isNewTask">remove</md-icon>
+	</button>
+</div>
+<div class="new-task" *ngIf="isNewTask">
+	<app-task-form [buttonText]="'Add'" (onSubmitted)="addTask($event)"></app-task-form>
+</div>

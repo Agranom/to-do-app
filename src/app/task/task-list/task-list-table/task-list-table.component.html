@@ -1,0 +1,48 @@
+<table class="table task-table">
+  <thead class="task-table__header">
+  <tr>
+    <th>#</th>
+    <th>Title</th>
+    <th>Priority</th>
+    <th>Completed</th>
+    <th>Date</th>
+    <th>Actions</th>
+    <th>&nbsp;</th>
+  </tr>
+  </thead>
+  <tbody class="task-table__body">
+  <tr class="task-table__item"
+      *ngFor="let task of tasks | categoryFilter: filterProp | dateFilter: startDate: endDate; let i = index"
+      [ngClass]="{'completed': task.isCompleted, 'overdue': isTaskOverdue(task.date)}">
+    <td>{{i + 1}}</td>
+    <td mdTooltip="{{task.description}}">{{task.title}}</td>
+    <td>
+		{{task.priority}}
+		<md-icon *ngIf="task.priority === 'high'" color="warn" style="vertical-align: middle">whatshot</md-icon>
+	</td>
+    <td>
+      <md-checkbox [checked]="task.isCompleted" #isCompleted
+                   (change)="completeTask(task.$key, isCompleted.checked)" [color]="'primary'"></md-checkbox>
+    </td>
+    <td>{{task.date | date}}</td>
+    <td class="task-table__actions">
+      <button [disabled]="task.isCompleted" class="edit-button" md-mini-fab type="button"
+              (click)="onSelect(task)" mdTooltip="Edit task">
+        <md-icon>edit</md-icon>
+      </button>
+      <button class="" md-mini-fab (click)="deleteTask(task.$key)" [color]="'warn'" mdTooltip="Delete task">
+        <md-icon>delete</md-icon>
+      </button>
+    </td>
+    <td>
+      <input type="hidden" [mdDatepicker]="postponeDp" [min]="currentDate">
+      <md-datepicker #postponeDp [touchUi]="true"
+                     (selectedChanged)="postponeTask(task.$key, $event)"></md-datepicker>
+      <button md-raised-button [disabled]="task.isCompleted" (click)="postponeDp.open()"
+              mdTooltip="Postpone your task to another day">Postpone
+      </button>
+    </td>
+  </tr>
+  </tbody>
+</table>
+

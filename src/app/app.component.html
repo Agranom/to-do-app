@@ -1,0 +1,23 @@
+<md-toolbar color="primary" class="header">
+	<button md-button class="header__menu-btn" (click)="sidenav.toggle()">
+		<md-icon>menu</md-icon>
+	</button>
+	<div class="header__logo">
+		<h1>To Do App</h1>
+	</div>
+</md-toolbar>
+<md-sidenav-container>
+	<md-sidenav mode="over" opened="false" #sidenav>
+		<nav class="app-navbar">
+			<ul class="side-menu list-group">
+				<li><a [routerLink]="['/task']" [routerLinkActive]="['active']">
+					<md-icon>home</md-icon>
+					Home</a></li>
+			</ul>
+		</nav>
+	</md-sidenav>
+	<main class="container-fluid main-content">
+		<router-outlet></router-outlet>
+	</main>
+</md-sidenav-container>
+<footer></footer>

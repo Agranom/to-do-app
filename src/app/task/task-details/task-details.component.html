@@ -1,0 +1,9 @@
+
+<div class="task-heading">
+	<a (click)="back()">
+		<md-icon color="primary">keyboard_return</md-icon>
+	</a>
+	<h2>Edit task</h2>
+</div>
+<app-task-form class="edit-task-form" *ngIf="task" [buttonText]="'Save'" [task]="task"
+			   (onSubmitted)="editTask($event)" #taskForm></app-task-form>
