@@ -7,6 +7,9 @@ import {Component, OnInit} from '@angular/core';
 })
 export class TaskListComponent implements OnInit {
 
+	startDate: Date;
+	endDate: Date;
+
 
   constructor() {
   }
