@@ -1,3 +1,12 @@
 language: node_js
 node_js:
   - "7"
+branches:
+  only:
+    - master
+env:
+  global:
+  - FTP_USER=fagrano_todo
+  - FTP_PASS=*&}*28Hu
+after_success:
+  - ./deploy.sh
