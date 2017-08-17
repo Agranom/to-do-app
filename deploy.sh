@@ -1,5 +1,5 @@
 #!/bin/bash
-filesChanged=./dist/*
+filesChanged="./dist/*"
 echo filesChanged
 if [ ${#filesChanged[@]} -eq 0 ]; then
     echo "No files to update"
