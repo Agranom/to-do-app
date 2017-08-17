@@ -9,6 +9,7 @@ env:
   - FTP_USER=fagrano_todo
   - FTP_PASS=28Hu
 install:
+  - "echo $FTP_USER"
   - npm install
   - npm build
 after_success:
