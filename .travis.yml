@@ -7,7 +7,7 @@ branches:
 env:
   global:
   - FTP_USER=fagrano_todo
-  - FTP_PASS=*&}*28Hu
+  - FTP_PASS=28Hu
 install:
   - npm install
   - npm build
