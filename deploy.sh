@@ -6,7 +6,7 @@ if [ ${#filesChanged[@]} -eq 0 ]; then
 else
     for f in $filesChanged
 	do
-		if ["$f" == "./dist/index.html"]
+		if [ "$f" == "./dist/index.html" ]
 		then
 			sed -i 's/<base href=\"\/\">/<base href=\"\/todo\/\">/g' $f
 		fi
