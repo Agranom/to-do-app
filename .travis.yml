@@ -16,7 +16,6 @@ script:
   - ng build
 
 install:
-  - "echo $FTP_USER"
   - npm install
   - npm build
 after_success:
