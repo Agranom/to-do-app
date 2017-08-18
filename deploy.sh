@@ -6,7 +6,10 @@ if [ ${#filesChanged[@]} -eq 0 ]; then
 else
     for f in $filesChanged
 	do
-
+		if ["$f" == "./dist/index.html"]
+		then
+			sed -i 's/<base href=\"\/\">/<base href=\"\/todo\/\">/g' $f
+		fi
 		#do not upload these files that aren't necessary to the site
 		if [ "$f" != ".travis.yml" ] && [ "$f" != "deploy.sh" ] && [ "$f" != "package.json" ]
 		then
