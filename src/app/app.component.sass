@@ -16,10 +16,9 @@ md-sidenav
 
 md-sidenav-container
 	background-color: $body-bg
-	flex: 1
+	height: 100%
 
 .side-menu
-	& > li
 	a
 		display: block
 		padding: 0 1rem
@@ -53,3 +52,6 @@ md-sidenav-container
 .main-content
 	padding-top: 35px
 	padding-bottom: 50px
+	display: flex
+	flex-direction: column
+	min-height: 100%
