@@ -12,7 +12,7 @@
 			<div class="form-group">
 				<md-input-container class="task-form__field" [color]="'primary'">
 					<input mdInput [mdDatepicker]="datepicker" formControlName="date">
-					<button mdSuffix [mdDatepickerToggle]="datepicker"></button>
+					<md-datepicker-toggle mdSuffix [for]="datepicker"></md-datepicker-toggle>
 				</md-input-container>
 				<md-datepicker #datepicker [touchUi]="true" [startAt]="startDate"></md-datepicker>
 				<div [hidden]="taskForm.get('date').errors && !isSubmitted">

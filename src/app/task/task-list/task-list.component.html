@@ -13,14 +13,14 @@
 					<div class="">
 						<md-input-container class="full-width" [color]="'primary'">
 							<input mdInput [mdDatepicker]="dpStartDate" placeholder="from" [(ngModel)]="startDate">
-							<button mdSuffix [mdDatepickerToggle]="dpStartDate"></button>
+							<md-datepicker-toggle mdSuffix [for]="dpStartDate"></md-datepicker-toggle>
 						</md-input-container>
 						<md-datepicker #dpStartDate [touchUi]="true" [startAt]="startDate"></md-datepicker>
 					</div>
 					<div class="">
 						<md-input-container class="full-width" [color]="'primary'">
 							<input mdInput [mdDatepicker]="dpEndDate" placeholder="to" [(ngModel)]="endDate">
-							<button mdSuffix [mdDatepickerToggle]="dpEndDate"></button>
+							<md-datepicker-toggle mdSuffix [for]="dpEndDate"></md-datepicker-toggle>
 						</md-input-container>
 						<md-datepicker #dpEndDate [touchUi]="true" [startAt]="endDate"></md-datepicker>
 					</div>
