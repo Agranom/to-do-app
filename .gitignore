@@ -42,3 +42,4 @@ testem.log
 Thumbs.db
 
 .travis.yml
+deploy.sh
