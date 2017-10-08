@@ -1,48 +1,49 @@
 import {Injectable} from '@angular/core';
-import {AngularFireDatabase, FirebaseListObservable} from 'angularfire2/database';
+import {AngularFireDatabase, AngularFireList, AngularFireObject} from 'angularfire2/database';
 import {Task} from '../models/task.interface';
 import {Config} from '../../config';
-import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 
 
 @Injectable()
 export class ToDoTasksService {
 
-  private tasks: FirebaseListObservable<Task[]>;
+  private tasks: AngularFireList<Task>;
 
   constructor(private afDatabase: AngularFireDatabase, private config: Config) {
   }
 
-  getTasks(): FirebaseListObservable<Task[]> {
-    this.tasks = this.afDatabase.list(this.config.TASKS);
-    const tasks = this.tasks;
-    return tasks;
+  getTasks(): AngularFireList<Task> {
+    this.tasks = this.afDatabase.list<Task>(this.config.TASKS);
+    return this.tasks;
   }
 
-  getTask(key: string): Observable<Task> {
-    return this.afDatabase.object(this.config.TASKS + `/${key}`);
+  getTask(key: string): AngularFireObject<Task> {
+    return this.afDatabase.object<Task>(this.config.TASKS + `/${key}`);
   }
 
   addTask(task: Task) {
-    return this.tasks.push(task);
+    this.tasks.push(task);
+    return this.tasks.snapshotChanges();
   }
 
   updateTask(key: string, task: Task) {
-    this.getTasks();
-    return this.tasks.update(key, task);
+    // this.getTasks();
+    this.tasks.update(key, task);
+    return this.tasks.snapshotChanges();
   }
 
   deleteTask(key: string) {
     this.tasks.remove(key);
+    return this.tasks.snapshotChanges();
   }
 
   deleteCompletedTasks() {
-    this.afDatabase.list(this.config.TASKS).forEach(tasks => tasks.map(task => {
-      if (task.isCompleted) {
-        this.deleteTask(task.$key)
-      }
-    }));
+    // this.afDatabase.list(this.config.TASKS).forEach(tasks => tasks.map(task => {
+    //   if (task.isCompleted) {
+    //     this.deleteTask(task.$key)
+    //   }
+    // }));
   }
 
 }

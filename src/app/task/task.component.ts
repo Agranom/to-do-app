@@ -28,7 +28,7 @@ export class TaskComponent implements OnInit {
       isCompleted: false
     });
     this.toDoTasksService.addTask(newTask)
-      .then(() => this.toggleTaskForm());
+      .subscribe(() => this.toggleTaskForm());
   }
 
 }

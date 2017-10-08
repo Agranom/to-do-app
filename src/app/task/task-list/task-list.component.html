@@ -1,32 +1,32 @@
 <h2>My To Do List</h2>
 <div class="task-board">
 	<div class="">
-		<md-tab-group>
-			<md-tab label="Today tasks">
+		<mat-tab-group>
+			<mat-tab label="Today tasks">
 				<app-task-list-table [filterProp]="'today'"></app-task-list-table>
-			</md-tab>
-			<md-tab label="Overdue tasks">
+			</mat-tab>
+			<mat-tab label="Overdue tasks">
 				<app-task-list-table [filterProp]="'overdue'"></app-task-list-table>
-			</md-tab>
-			<md-tab label="All tasks">
+			</mat-tab>
+			<mat-tab label="All tasks">
 				<div class="task-board__filter">
 					<div class="">
-						<md-input-container class="full-width" [color]="'primary'">
-							<input mdInput [mdDatepicker]="dpStartDate" placeholder="from" [(ngModel)]="startDate">
-							<md-datepicker-toggle mdSuffix [for]="dpStartDate"></md-datepicker-toggle>
-						</md-input-container>
-						<md-datepicker #dpStartDate [touchUi]="true" [startAt]="startDate"></md-datepicker>
+						<mat-input-container class="full-width" [color]="'primary'">
+							<input matInput [matDatepicker]="dpStartDate" placeholder="from" [(ngModel)]="startDate">
+							<mat-datepicker-toggle matSuffix [for]="dpStartDate"></mat-datepicker-toggle>
+						</mat-input-container>
+						<mat-datepicker #dpStartDate [touchUi]="true" [startAt]="startDate"></mat-datepicker>
 					</div>
 					<div class="">
-						<md-input-container class="full-width" [color]="'primary'">
-							<input mdInput [mdDatepicker]="dpEndDate" placeholder="to" [(ngModel)]="endDate">
-							<md-datepicker-toggle mdSuffix [for]="dpEndDate"></md-datepicker-toggle>
-						</md-input-container>
-						<md-datepicker #dpEndDate [touchUi]="true" [startAt]="endDate"></md-datepicker>
+						<mat-input-container class="full-width" [color]="'primary'">
+							<input matInput [matDatepicker]="dpEndDate" placeholder="to" [(ngModel)]="endDate">
+							<mat-datepicker-toggle matSuffix [for]="dpEndDate"></mat-datepicker-toggle>
+						</mat-input-container>
+						<mat-datepicker #dpEndDate [touchUi]="true" [startAt]="endDate"></mat-datepicker>
 					</div>
 				</div>
 				<app-task-list-table [startDate]="startDate" [endDate]="endDate"></app-task-list-table>
-			</md-tab>
-		</md-tab-group>
+			</mat-tab>
+		</mat-tab-group>
 	</div>
 </div>

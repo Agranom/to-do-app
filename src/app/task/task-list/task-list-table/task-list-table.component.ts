@@ -3,8 +3,9 @@ import {Router} from '@angular/router';
 import {ToDoTasksService} from '../../services/to-do-tasks.service';
 import {Task} from '../../models/task.interface';
 import * as moment from 'moment';
-import {MdDialog, MdSnackBar} from '@angular/material';
+import {MatDialog, MatSnackBar} from '@angular/material';
 import {ConfirmDialogComponent} from '../../../shared/confirm-dialog/confirm-dialog.component';
+import {Observable} from "rxjs/Observable";
 
 
 @Component({
@@ -14,7 +15,7 @@ import {ConfirmDialogComponent} from '../../../shared/confirm-dialog/confirm-dia
 })
 export class TaskListTableComponent implements OnInit {
 
-	tasks: Task[];
+	tasks: Observable<Task[]>;
 	currentDate = new Date();
 	@Input() startDate: Date;
 	@Input() endDate: Date;
@@ -27,7 +28,7 @@ export class TaskListTableComponent implements OnInit {
 	@Input() filterProp: string;
 
 	constructor(private toDoTasksService: ToDoTasksService, private router: Router,
-				private snackBar: MdSnackBar, private dialog: MdDialog) {
+				private snackBar: MatSnackBar, private dialog: MatDialog) {
 	}
 
 	ngOnInit() {
@@ -40,20 +41,18 @@ export class TaskListTableComponent implements OnInit {
 	}
 
 	getTasks(): void {
-		this.toDoTasksService.getTasks().subscribe((tasks) => {
-			this.tasks = tasks;
-		});
+		this.tasks = this.toDoTasksService.getTasks().valueChanges();
 	}
 
 	completeTask(key: string, status: boolean) {
-		this.toDoTasksService.updateTask(key, {isCompleted: status} as Task)
+		this.toDoTasksService.updateTask(key, {isCompleted: status} as Task).subscribe()
 	}
 
 	deleteTask(key: string): void {
 		this.dialog.open(ConfirmDialogComponent).afterClosed()
 			.subscribe(response => {
 				if (response) {
-					this.toDoTasksService.deleteTask(key);
+					this.toDoTasksService.deleteTask(key).subscribe();
 				}
 			});
 	}
@@ -64,7 +63,7 @@ export class TaskListTableComponent implements OnInit {
 
 	postponeTask(key: string, newDate: Date): void {
 		setTimeout(() => this.toDoTasksService.updateTask(key, {date: newDate} as Task)
-			.then(() => {
+			.subscribe(() => {
 				this.snackBar.open('Postponed', '', {
 					duration: 1000
 				});

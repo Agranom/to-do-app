@@ -2,41 +2,41 @@
 	<form [formGroup]="taskForm" novalidate class="task-form" (submit)="onSubmit()">
 		<div class="task-form__row">
 			<div class="form-group">
-				<md-input-container class="task-form__field" [color]="'primary'">
-					<input mdInput placeholder="Task title" formControlName="title" autofocus>
-				</md-input-container>
+				<mat-form-field class="task-form__field" [color]="'primary'">
+					<input matInput placeholder="Task title" formControlName="title" autofocus>
+				</mat-form-field>
 				<div [hidden]="taskForm.get('title').errors && !isSubmitted">
 					<span class="text-danger">{{getValidatorMessage(taskForm.get('title'), 'Title')}}</span>
 				</div>
 			</div>
 			<div class="form-group">
-				<md-input-container class="task-form__field" [color]="'primary'">
-					<input mdInput [mdDatepicker]="datepicker" formControlName="date">
-					<md-datepicker-toggle mdSuffix [for]="datepicker"></md-datepicker-toggle>
-				</md-input-container>
-				<md-datepicker #datepicker [touchUi]="true" [startAt]="startDate"></md-datepicker>
+				<mat-form-field class="task-form__field" [color]="'primary'">
+					<input matInput [matDatepicker]="datepicker" formControlName="date">
+					<mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+				</mat-form-field>
+				<mat-datepicker #datepicker [touchUi]="true" [startAt]="startDate"></mat-datepicker>
 				<div [hidden]="taskForm.get('date').errors && !isSubmitted">
 					<span class="text-danger">{{getValidatorMessage(taskForm.get('date'), 'Date')}}</span>
 				</div>
 			</div>
 			<div class="form-group">
-				<md-input-container class="task-form__field" [color]="'primary'">
-					<textarea mdInput placeholder="Description" formControlName="description"></textarea>
+				<mat-form-field class="task-form__field" [color]="'primary'">
+					<textarea matInput placeholder="Description" formControlName="description"></textarea>
 					<div [hidden]="taskForm.get('description').errors && !isSubmitted">
 						<span
 							class="text-danger">{{getValidatorMessage(taskForm.get('description'), 'Description')}}</span>
 					</div>
-				</md-input-container>
+				</mat-form-field>
 			</div>
 			<fieldset class="form-group">
 				<legend>Priority</legend>
 				<div class="form-check form-check-inline" *ngFor="let priority of priorities">
-					<md-radio-group formControlName="priority" [name]="'priority'">
-						<md-radio-button [value]="priority" [color]="'primary'">{{priority}}</md-radio-button>
-					</md-radio-group>
+					<mat-radio-group [formControlName]="'priority'" [name]="'priority'">
+						<mat-radio-button [value]="priority" [color]="'primary'">{{priority}}</mat-radio-button>
+					</mat-radio-group>
 				</div>
 			</fieldset>
 		</div>
-		<button md-raised-button>{{buttonText || 'Continue'}}</button>
+		<button mat-raised-button>{{buttonText || 'Continue'}}</button>
 	</form>
 </div>
