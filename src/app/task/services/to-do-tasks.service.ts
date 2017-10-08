@@ -28,26 +28,23 @@ export class ToDoTasksService {
 			.valueChanges();
 	}
 
-	addTask(task: Task) {
+	addTask(task: Task): Observable<any> {
 		const newTask = Object.assign(task, {
 			date: task.date.toUTCString(),
 			isCompleted: false
 		});
-		this.tasks.push(newTask);
-		return this.tasks.snapshotChanges();
+		return Observable.fromPromise(this.tasks.push(newTask));
 	}
 
-	updateTask(key: string, task: Task): Observable<Task[]> {
-		this.tasks.update(key, task);
-		return this.tasks.valueChanges();
+	updateTask(key: string, task: Task): Observable<any> {
+		return Observable.fromPromise(this.tasks.update(key, task));
 	}
 
-	deleteTask(key: string): Observable<Task[]> {
-		this.tasks.remove(key);
-		return this.tasks.valueChanges();
+	deleteTask(key: string): Observable<any> {
+		return Observable.fromPromise(this.tasks.remove(key));
 	}
 
-	deleteCompletedTasks() {
+	deleteCompletedTasks(): void {
 		this.tasks.snapshotChanges().forEach(tasks => tasks
 			.filter(task => task.payload.val().isCompleted)
 			.forEach(completedTask => this.tasks.remove(completedTask.payload.key)));

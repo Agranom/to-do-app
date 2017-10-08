@@ -25,6 +25,7 @@ export class TaskComponent implements OnInit {
   addTask(task: Task): void {
     this.toDoTasksService.addTask(task)
       .subscribe(() => this.toggleTaskForm());
+      // this.toggleTaskForm();
   }
 
 }
