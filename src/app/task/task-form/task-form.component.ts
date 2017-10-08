@@ -43,7 +43,7 @@ export class TaskFormComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes['task']) {
+    if (changes['task'] && changes['task'].currentValue) {
       this.taskForm.patchValue({title: changes['task'].currentValue.title});
       this.taskForm.patchValue({description: changes['task'].currentValue.description});
       this.taskForm.patchValue({priority: changes['task'].currentValue.priority});

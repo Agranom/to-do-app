@@ -32,16 +32,12 @@ export class TaskListTableComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		this.getTasks();
+		this.tasks = this.toDoTasksService.getTasks();
 	}
 
 	@HostListener('window:pagehide')
 	onPageHide() {
 		this.toDoTasksService.deleteCompletedTasks();
-	}
-
-	getTasks(): void {
-		this.tasks = this.toDoTasksService.getTasks().valueChanges();
 	}
 
 	completeTask(key: string, status: boolean) {
@@ -62,13 +58,12 @@ export class TaskListTableComponent implements OnInit {
 	}
 
 	postponeTask(key: string, newDate: Date): void {
-		setTimeout(() => this.toDoTasksService.updateTask(key, {date: newDate} as Task)
+		this.toDoTasksService.updateTask(key, <Task>{date: newDate})
 			.subscribe(() => {
 				this.snackBar.open('Postponed', '', {
 					duration: 1000
 				});
-			})
-		);
+			});
 	}
 
 	isTaskOverdue(taskDate: string): boolean {
