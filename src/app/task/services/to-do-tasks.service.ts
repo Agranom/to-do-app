@@ -42,18 +42,15 @@ export class ToDoTasksService {
 		return this.tasks.valueChanges();
 	}
 
-	/*TODO: refactor this*/
-	deleteTask(key: string) {
+	deleteTask(key: string): Observable<Task[]> {
 		this.tasks.remove(key);
-		return this.tasks.snapshotChanges();
+		return this.tasks.valueChanges();
 	}
 
 	deleteCompletedTasks() {
-		// this.afDatabase.list(this.config.TASKS).forEach(tasks => tasks.map(task => {
-		//   if (task.isCompleted) {
-		//     this.deleteTask(task.$key)
-		//   }
-		// }));
+		this.tasks.snapshotChanges().forEach(tasks => tasks
+			.filter(task => task.payload.val().isCompleted)
+			.forEach(completedTask => this.tasks.remove(completedTask.payload.key)));
 	}
 
 }

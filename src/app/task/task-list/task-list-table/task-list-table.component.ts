@@ -46,11 +46,11 @@ export class TaskListTableComponent implements OnInit {
 
 	deleteTask(key: string): void {
 		this.dialog.open(ConfirmDialogComponent).afterClosed()
-			.subscribe(response => {
+			.map(response => {
 				if (response) {
-					this.toDoTasksService.deleteTask(key).subscribe();
+					return this.toDoTasksService.deleteTask(key);
 				}
-			});
+			}).subscribe();
 	}
 
 	onSelect(task): void {
@@ -69,5 +69,4 @@ export class TaskListTableComponent implements OnInit {
 	isTaskOverdue(taskDate: string): boolean {
 		return moment(taskDate).isBefore(moment(), 'day');
 	}
-
 }
