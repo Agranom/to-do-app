@@ -9,6 +9,7 @@ import {
 } from "@angular/material";
 import {ToDoTasksService} from "../services/to-do-tasks.service";
 import {FormValidatorService} from "../../services/form-validator.service";
+import {ScrollToService} from '../../shared/scroll-to/scroll-to.service';
 
 @NgModule({
 	imports: [
@@ -23,7 +24,7 @@ import {FormValidatorService} from "../../services/form-validator.service";
 	],
 	exports: [TaskFormComponent],
 	declarations: [TaskFormComponent],
-	providers: [ToDoTasksService, FormValidatorService],
+	providers: [ToDoTasksService, FormValidatorService, ScrollToService],
 })
 export class TaskFormModule {
 }

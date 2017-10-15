@@ -1,4 +1,4 @@
-import {AfterViewChecked, Component, EventEmitter, Input, OnChanges, Output, SimpleChanges} from '@angular/core';
+import {AfterViewInit, Component, EventEmitter, Input, OnChanges, Output, SimpleChanges} from '@angular/core';
 import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {FormValidatorService} from '../../services/form-validator.service';
 import {Priority} from '../shared/priority.enum';
@@ -12,7 +12,7 @@ import {ScrollToService} from '../../shared/scroll-to/scroll-to.service';
 	templateUrl: './task-form.component.html',
 	styleUrls: ['./task-form.component.sass']
 })
-export class TaskFormComponent implements OnChanges, AfterViewChecked {
+export class TaskFormComponent implements OnChanges, AfterViewInit {
 
 	startDate = new Date();
 	isSubmitted = false;
@@ -32,7 +32,7 @@ export class TaskFormComponent implements OnChanges, AfterViewChecked {
 		}
 	}
 
-	ngAfterViewChecked() {
+	ngAfterViewInit() {
 		this.scrollToService.scrollTo('.task');
 	}
 

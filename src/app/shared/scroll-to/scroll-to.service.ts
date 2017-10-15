@@ -9,7 +9,7 @@ export class ScrollToService {
 
 	scrollTo(scrollTarget: string) {
 		const target = this.document.querySelector(scrollTarget);
-		target.scrollIntoView({block: 'start', behavior: 'smooth'} as ScrollIntoViewOptions);
+		setTimeout(() => target.scrollIntoView({block: 'start', behavior: 'smooth'}), 100);
 	}
 
 }
