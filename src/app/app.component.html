@@ -1,23 +1,23 @@
-<md-toolbar color="primary" class="header">
-	<button md-button class="header__menu-btn" (click)="sidenav.toggle()">
-		<md-icon>menu</md-icon>
+<mat-toolbar color="primary" class="header">
+	<button mat-button class="header__menu-btn" (click)="sidenav.toggle()">
+		<mat-icon>menu</mat-icon>
 	</button>
 	<div class="header__logo">
 		<h1>To Do App</h1>
 	</div>
-</md-toolbar>
-<md-sidenav-container>
-	<md-sidenav mode="over" opened="false" #sidenav>
+</mat-toolbar>
+<mat-sidenav-container class="mat-sidenav-container">
+	<mat-sidenav [mode]="'over'" [opened]="false" #sidenav class="mat-sidenav">
 		<nav class="app-navbar">
 			<ul class="side-menu list-group">
 				<li><a [routerLink]="['/task']" [routerLinkActive]="['active']">
-					<md-icon>home</md-icon>
+					<mat-icon class="side-menu__icon">home</mat-icon>
 					Home</a></li>
 			</ul>
 		</nav>
-	</md-sidenav>
+	</mat-sidenav>
 	<main class="container-fluid main-content">
 		<router-outlet></router-outlet>
 	</main>
-</md-sidenav-container>
+</mat-sidenav-container>
 <footer></footer>

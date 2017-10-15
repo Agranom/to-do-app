@@ -1,12 +1,13 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {ToDoTasksService} from '../services/to-do-tasks.service';
 import {Task} from '../models/task.interface';
 import 'rxjs/add/operator/switchMap';
 import {TaskFormComponent} from '../task-form/task-form.component';
-import {MdDialog} from '@angular/material';
+import {MatDialog} from '@angular/material';
 import {ConfirmDialogComponent} from '../../shared/confirm-dialog/confirm-dialog.component';
 import {Observable} from 'rxjs/Observable';
+import {Subscription} from "rxjs/Subscription";
 
 
 @Component({
@@ -14,32 +15,32 @@ import {Observable} from 'rxjs/Observable';
 	templateUrl: './task-details.component.html',
 	styleUrls: ['./task-details.component.sass']
 })
-export class TaskDetailsComponent implements OnInit {
+export class TaskDetailsComponent implements OnInit, OnDestroy {
 
-	task: Task;
+	task: Observable<Task>;
 	taskKey: string;
 	@ViewChild('taskForm') taskForm: TaskFormComponent;
+	subscription: Subscription;
 
 	constructor(private route: ActivatedRoute, private router: Router,
 				private toDoTasksService: ToDoTasksService,
-				private dialog: MdDialog) {
+				private dialog: MatDialog) {
 	}
 
 	ngOnInit() {
-		this.route.paramMap
+		this.task = this.route.paramMap
 			.switchMap((params: ParamMap) => {
 				this.taskKey = params.get('id');
-				return this.toDoTasksService.getTask(params.get('id'));
+				return this.toDoTasksService.getTask(this.taskKey);
 			})
-			.subscribe((task: Task) => this.task = task);
 	}
 
 	editTask(task): void {
-		this.toDoTasksService.updateTask(this.taskKey, task)
-			.then(() => {
+		this.subscription = this.toDoTasksService.updateTask(this.taskKey, task)
+			.subscribe(() => {
 				this.taskForm.taskForm.markAsPristine();
-				this.router.navigate(['/task'])
-			}).catch((error) => console.log(error));
+				this.router.navigate(['/task']);
+			})
 	}
 
 	back(): void {
@@ -52,5 +53,11 @@ export class TaskDetailsComponent implements OnInit {
 		}
 
 		return this.dialog.open(ConfirmDialogComponent).afterClosed();
+	}
+
+	ngOnDestroy() {
+		if (this.subscription) {
+			this.subscription.unsubscribe();
+		}
 	}
 }

@@ -1,9 +1,9 @@
 <app-task-list></app-task-list>
-<div class="flex-row">
-	<button md-fab class="add-button flex-left" (click)="toggleTaskForm()" mdTooltip="Add new task"
-			mdTooltipPosition="before">
-		<md-icon *ngIf="!isNewTask">add</md-icon>
-		<md-icon *ngIf="isNewTask">remove</md-icon>
+<div class="flex-row new-task-container">
+	<button mat-fab class="add-button flex-left" (click)="toggleTaskForm()" matTooltip="Add new task"
+			[matTooltipPosition]="'before'">
+		<mat-icon *ngIf="!isNewTask">add</mat-icon>
+		<mat-icon *ngIf="isNewTask">remove</mat-icon>
 	</button>
 </div>
 <div class="new-task" *ngIf="isNewTask">

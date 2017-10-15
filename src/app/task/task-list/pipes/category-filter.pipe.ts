@@ -1,5 +1,4 @@
 import {Pipe, PipeTransform} from '@angular/core';
-import {getDateWithoutTime} from '../../../shared/common-functions';
 import * as moment from 'moment';
 
 @Pipe({

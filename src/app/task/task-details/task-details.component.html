@@ -1,9 +1,9 @@
 
 <div class="task-heading">
 	<a (click)="back()">
-		<md-icon color="primary">keyboard_return</md-icon>
+		<mat-icon color="primary">keyboard_return</mat-icon>
 	</a>
 	<h2>Edit task</h2>
 </div>
-<app-task-form class="edit-task-form" *ngIf="task" [buttonText]="'Save'" [task]="task"
+<app-task-form class="edit-task-form" *ngIf="task | async" [buttonText]="'Save'" [task]="(task | async)"
 			   (onSubmitted)="editTask($event)" #taskForm></app-task-form>

@@ -3,7 +3,7 @@ import {Router} from '@angular/router';
 import {ToDoTasksService} from '../../services/to-do-tasks.service';
 import {Task} from '../../models/task.interface';
 import * as moment from 'moment';
-import {MdDialog, MdSnackBar} from '@angular/material';
+import {MatDialog, MatSnackBar} from '@angular/material';
 import {ConfirmDialogComponent} from '../../../shared/confirm-dialog/confirm-dialog.component';
 
 
@@ -16,6 +16,7 @@ export class TaskListTableComponent implements OnInit {
 
 	tasks: Task[];
 	currentDate = new Date();
+	isProgress: boolean;
 	@Input() startDate: Date;
 	@Input() endDate: Date;
 	/**
@@ -27,11 +28,15 @@ export class TaskListTableComponent implements OnInit {
 	@Input() filterProp: string;
 
 	constructor(private toDoTasksService: ToDoTasksService, private router: Router,
-				private snackBar: MdSnackBar, private dialog: MdDialog) {
+				private snackBar: MatSnackBar, private dialog: MatDialog) {
 	}
 
 	ngOnInit() {
-		this.getTasks();
+		this.isProgress = true;
+		this.toDoTasksService.getTasks().subscribe((tasks) => {
+			this.isProgress = false;
+			this.tasks = tasks;
+		})
 	}
 
 	@HostListener('window:pagehide')
@@ -39,23 +44,17 @@ export class TaskListTableComponent implements OnInit {
 		this.toDoTasksService.deleteCompletedTasks();
 	}
 
-	getTasks(): void {
-		this.toDoTasksService.getTasks().subscribe((tasks) => {
-			this.tasks = tasks;
-		});
-	}
-
 	completeTask(key: string, status: boolean) {
-		this.toDoTasksService.updateTask(key, {isCompleted: status} as Task)
+		this.toDoTasksService.updateTask(key, {isCompleted: status} as Task).subscribe()
 	}
 
 	deleteTask(key: string): void {
 		this.dialog.open(ConfirmDialogComponent).afterClosed()
-			.subscribe(response => {
+			.map(response => {
 				if (response) {
-					this.toDoTasksService.deleteTask(key);
+					return this.toDoTasksService.deleteTask(key);
 				}
-			});
+			}).subscribe();
 	}
 
 	onSelect(task): void {
@@ -63,17 +62,15 @@ export class TaskListTableComponent implements OnInit {
 	}
 
 	postponeTask(key: string, newDate: Date): void {
-		setTimeout(() => this.toDoTasksService.updateTask(key, {date: newDate} as Task)
-			.then(() => {
+		this.toDoTasksService.updateTask(key, <Task>{date: newDate})
+			.subscribe(() => {
 				this.snackBar.open('Postponed', '', {
 					duration: 1000
 				});
-			})
-		);
+			});
 	}
 
 	isTaskOverdue(taskDate: string): boolean {
 		return moment(taskDate).isBefore(moment(), 'day');
 	}
-
 }
