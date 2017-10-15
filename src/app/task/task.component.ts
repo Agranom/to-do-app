@@ -1,31 +1,26 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {Task} from './models/task.interface';
 import {ToDoTasksService} from './services/to-do-tasks.service';
 
 @Component({
-  selector: 'app-task',
-  templateUrl: './task.component.html',
-  styleUrls: ['./task.component.sass'],
+	selector: 'app-task',
+	templateUrl: './task.component.html',
+	styleUrls: ['./task.component.sass'],
 })
-export class TaskComponent implements OnInit {
+export class TaskComponent {
 
-  isNewTask = false;
+	isNewTask = false;
 
-  constructor(private toDoTasksService: ToDoTasksService) {
+	constructor(private toDoTasksService: ToDoTasksService) {
 
-  }
+	}
 
-  ngOnInit() {
-  }
+	toggleTaskForm(): void {
+		this.isNewTask = !this.isNewTask;
+	}
 
-  toggleTaskForm(): void {
-    this.isNewTask = !this.isNewTask;
-  }
-
-  addTask(task: Task): void {
-    this.toDoTasksService.addTask(task)
-      .subscribe(() => this.toggleTaskForm());
-      // this.toggleTaskForm();
-  }
-
+	addTask(task: Task): void {
+		this.toDoTasksService.addTask(task)
+			.subscribe(() => this.toggleTaskForm());
+	}
 }

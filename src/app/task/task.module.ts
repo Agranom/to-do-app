@@ -15,6 +15,7 @@ import {
 	MatButtonModule, MatCheckboxModule, MatDatepickerModule, MatIconModule, MatInputModule, MatProgressSpinnerModule, MatRadioModule,
 	MatTabsModule, MatTooltipModule
 } from '@angular/material';
+import {ScrollToService} from '../shared/scroll-to/scroll-to.service';
 
 @NgModule({
 	imports: [
@@ -43,7 +44,8 @@ import {
 		CategoryFilterPipe,
 	],
 	providers: [
-		ToDoTasksService
+		ToDoTasksService,
+		ScrollToService
 	],
 })
 export class TaskModule {
