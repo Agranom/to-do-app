@@ -46,6 +46,7 @@
 	</tr>
 	</tbody>
 </table>
-<div class="flex-row flex-center" *ngIf="isProgress">
-	<mat-spinner [strokeWidth]="4"></mat-spinner>
+<div class="flex-row flex-center">
+	<h4 *ngIf="(tasks | categoryFilter: filterProp)?.length === 0 && !isProgress">No tasks were found...</h4>
+	<mat-spinner *ngIf="isProgress" [strokeWidth]="4"></mat-spinner>
 </div>
