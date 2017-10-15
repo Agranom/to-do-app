@@ -5,7 +5,6 @@ import {Task} from '../../models/task.interface';
 import * as moment from 'moment';
 import {MatDialog, MatSnackBar} from '@angular/material';
 import {ConfirmDialogComponent} from '../../../shared/confirm-dialog/confirm-dialog.component';
-import {Observable} from "rxjs/Observable";
 
 
 @Component({
@@ -15,8 +14,9 @@ import {Observable} from "rxjs/Observable";
 })
 export class TaskListTableComponent implements OnInit {
 
-	tasks: Observable<Task[]>;
+	tasks: Task[];
 	currentDate = new Date();
+	isProgress: boolean;
 	@Input() startDate: Date;
 	@Input() endDate: Date;
 	/**
@@ -32,7 +32,11 @@ export class TaskListTableComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		this.tasks = this.toDoTasksService.getTasks();
+		this.isProgress = true;
+		this.toDoTasksService.getTasks().subscribe((tasks) => {
+			this.isProgress = false;
+			this.tasks = tasks;
+		})
 	}
 
 	@HostListener('window:pagehide')

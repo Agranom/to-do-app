@@ -12,9 +12,9 @@ import {TaskRoutingModule} from "./task.routing.module";
 import {TaskFormModule} from "./task-form/task-form.module";
 import {ConfirmDialogModule} from "../shared/confirm-dialog/confirm-dialog.module";
 import {
-	MatButtonModule, MatCheckboxModule, MatDatepickerModule, MatIconModule, MatInputModule, MatRadioModule,
+	MatButtonModule, MatCheckboxModule, MatDatepickerModule, MatIconModule, MatInputModule, MatProgressSpinnerModule, MatRadioModule,
 	MatTabsModule, MatTooltipModule
-} from "@angular/material";
+} from '@angular/material';
 
 @NgModule({
 	imports: [
@@ -27,6 +27,7 @@ import {
 		MatCheckboxModule,
 		MatRadioModule,
 		MatTabsModule,
+		MatProgressSpinnerModule,
 		FormsModule,
 		ReactiveFormsModule,
 		TaskFormModule,
