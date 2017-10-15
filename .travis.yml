@@ -1,0 +1,25 @@
+language: node_js
+node_js:
+  - "7"
+branches:
+  only:
+    - master
+cache:
+  directories:
+    - "node_modules"
+env:
+  global:
+  - secure: cQG7yZdgvg6mgHbq5lRZ58lrogwy4xA6uZ3qtW+WlGDbH40RULjUoJUBxp4+88jqfET4Njkw80yBWd6JrtrhbOqd5y7x3vgygDA5cyryY1W3K6bmv8rNATacqWDoxpNvBkkpSL1/RSpbH7i5rUATR2dW/K9JgWd6vwPkhF0vARmPTbkvesEFqoz/BN367htXg/96bW7y4as9VyThNxn6MqzaJp4FdHj0Wt6zrBCOA2nMEPry376AFakVRw93SMNTTIB1Lsq9oti3to5XUazQ1sgq+/G0scw79T3vrWXtYGv5NeomQ4sRY/KNWTQQl6P7NbNx+zmLtKOzj3VLFdqeUmyH2wEawzB+Byx9ndr3Q1kCwqysYtBc1t8Z5DcHthdpKAS9jYtLkJ7hN2QopsYPKRfATi/U7S8KEO0ey7o0NkUSvjlIY1I6KydmGUc8v/cQlfDBwBp+ZlbdbX/yeQ2dlTc3C9sKhXcduaV+jTuLqCf6nS1BY5HuxpCrkSq6qds/K5n9xE6uuz2LnzKengY8gir0Di1XGhuaPMjIdrfCDxqwPeUUV3AGDPSqmvjOU9mtFRPWSDBSebi2OdOTPyhNaBu1fenZ8v1Pfi2UpfOchzUV9+yquCuYqgJV/QTkiYzM0eS2r8QbXlwn9RafpeTCjDFfWC6LFraALx0JCdS2k+Q=
+  - secure: Yk7cZ8DlornQYI/9dTTu0dXJ6qrXjzulaQxEqIED4Fk8F3mCiKFHMGfs1vlWdlHor36tJM3SBR/8ZWqoL9JBM3v0CpRdVl1UE3q8leBKqbr4UQioI4C6TRzhDcP4+ab7kDaYDQZlFuMEgRlRvYhGCVDEsiyR7B+tOvkHYzC1IXkj9jLwAk1PQYhQUFRiOaqWrrfvT6xm6XpVNBoqiRkMf7BX/j3WonJhR7Vgiku4nSD1fqoC0fi1xHm31TCORvjXpg7Q+FpaD8Cp0u6GZAtUeKFj06cCL0KF5ghTqKXPMjSroqgMr3/9aTMZ8LBC/mdHJDD/TKfRlMCm15s4qGQwz/JOsNymPzrVqfif76mfikpTsG3X/7WyTouFkS/s9BRHl+UAU0Fm/5V5bcqIWuG0k55VAA5gvBr5pO3Ght5Xp/Clt9/FsId6NKAWiBf3VfNfNIRQOARF4SxtPTMGNysA0Xa78e/sUcUw4x+MuMjaH0dubllGdAnotFFFAd2nv1TZtEMspZyyie9mHNSfIX/p7ApbyJDhAOtDb4vZEjw5scQrvZ/6u/Zu1TlTtq4qiGqnjtzyrX8d3NvmMzYNh5atPoNHidQnnQlRK63kSgn5Iyb/OfaR48CFgMdygzKKXBmcuZZJibc5WtLMu0eABU+XpAkjxnG8f+beicu2v1Fua4U=
+
+before_script:
+  - npm install -g @angular/cli
+
+script:
+  - ng build
+
+install:
+  - npm install
+  - npm build
+after_success:
+  -  sh deploy.sh
