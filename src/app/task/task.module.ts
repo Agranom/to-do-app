@@ -2,7 +2,6 @@ import {NgModule} from '@angular/core';
 
 import {TaskComponent} from './task.component';
 import {CommonModule} from '@angular/common';
-import {MyOwnAngularMaterialModule} from '../my-own-angular-material/my-own-angular-material.module';
 import {TaskListComponent} from './task-list/task-list.component';
 import {ToDoTasksService} from './services/to-do-tasks.service';
 import {DateFilterPipe} from './task-list/pipes/date-filter.pipe';
@@ -12,11 +11,22 @@ import {CategoryFilterPipe} from './task-list/pipes/category-filter.pipe';
 import {TaskRoutingModule} from "./task.routing.module";
 import {TaskFormModule} from "./task-form/task-form.module";
 import {ConfirmDialogModule} from "../shared/confirm-dialog/confirm-dialog.module";
+import {
+	MatButtonModule, MatCheckboxModule, MatDatepickerModule, MatIconModule, MatInputModule, MatRadioModule,
+	MatTabsModule, MatTooltipModule
+} from "@angular/material";
 
 @NgModule({
 	imports: [
 		CommonModule,
-		MyOwnAngularMaterialModule,
+		MatButtonModule,
+		MatIconModule,
+		MatTooltipModule,
+		MatInputModule,
+		MatDatepickerModule,
+		MatCheckboxModule,
+		MatRadioModule,
+		MatTabsModule,
 		FormsModule,
 		ReactiveFormsModule,
 		TaskFormModule,
