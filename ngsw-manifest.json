@@ -12,7 +12,7 @@
 			"/": {
 				"prefix": false
 			},
-			"/tasks": {
+			"/task": {
 				"prefix": true
 			}
 		}
